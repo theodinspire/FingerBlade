@@ -23,6 +23,8 @@ import UIKit.UIGestureRecognizerSubclass
     var tapsMade = 0
     var swipeMade = false
     
+    var timer: Timer?
+    
     var startingPoint: CGPoint = CGPoint()
     //var trail: [CGPoint]
     
@@ -33,6 +35,7 @@ import UIKit.UIGestureRecognizerSubclass
         tapsMade = 0
         swipeMade = false
         state = .possible
+        timer = nil
         
         startingPoint = CGPoint()
         
@@ -44,6 +47,7 @@ import UIKit.UIGestureRecognizerSubclass
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         print("Touch began")
+        startTimer()
         
         tapsMade += 1
         
@@ -98,6 +102,19 @@ import UIKit.UIGestureRecognizerSubclass
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesCancelled(touches, with: event)
         reset()
+    }
+    
+    //  Timer Functions
+    func startTimer() {
+        if let tmr = timer {
+            tmr.invalidate()
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(fireTimer(_:)), userInfo: nil, repeats: false)
+    }
+    
+    @objc func fireTimer(_ timer: Timer) {
+        state = .failed
     }
     
     
