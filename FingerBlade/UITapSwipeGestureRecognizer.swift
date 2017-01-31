@@ -78,6 +78,7 @@ class UITapSwipeGestureRecognizer: UIGestureRecognizer {
             let deltaX = loc.x - startingPoint.x
             let deltaY = loc.y - startingPoint.y
             
+            // Setting distance for minimum swipe
             if 200 <= sqrt(deltaX * deltaX + deltaY * deltaY) {
                 state = .failed
                 return
