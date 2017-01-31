@@ -10,20 +10,21 @@ import UIKit
 
 import UIKit.UIGestureRecognizerSubclass
 
-class UITapSwipeGestureRecognizer: UIGestureRecognizer {
+@IBDesignable class UITapSwipeGestureRecognizer: UIGestureRecognizer {
     //  Things to match the native libraries
     //  Tap requirements
     var numberOfTapsRequired: Int = 1
     var numberOfTapTouchesRequired: Int = 1
     //  Swipe Requirements
-    //var direction: UISwipeGestureRecognizerDirection = .down
     var numberOfSwipeTouchesRequired: Int = 1
+    var minimumSwipeThresholdDistance: CGFloat = 200
     
     //  Internal items
     var tapsMade = 0
     var swipeMade = false
     
     var startingPoint: CGPoint = CGPoint()
+    //var trail: [CGPoint]
     
     //  Testing items
     
@@ -32,95 +33,95 @@ class UITapSwipeGestureRecognizer: UIGestureRecognizer {
         tapsMade = 0
         swipeMade = false
         state = .possible
+        
         startingPoint = CGPoint()
+        
+        //if !trail.isEmpty {
+        //    trail.removeAll(keepingCapacity: true)
+        //}
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         print("Touch began")
         
-        if tapsMade == 0 {
-            state = .began
-            startingPoint = location(in: view)
-        }
-        
         tapsMade += 1
         
         //  Handle Taps
-        if tapsMade <= numberOfTapTouchesRequired {
-            if numberOfTouches != numberOfTapTouchesRequired {
-                state = .failed
-                return
-            }
-        } else if tapsMade == numberOfTapTouchesRequired + 1 {  //  Swipe
-            if numberOfTouches != numberOfSwipeTouchesRequired {
-                state = .failed
-                return
-            }
-            startingPoint = location(in: view?.window)
-        } else {
+        if (tapsMade <= numberOfTapsRequired && numberOfTouches != numberOfTapTouchesRequired) ||
+            (tapsMade == numberOfTapsRequired + 1 && numberOfTouches != numberOfSwipeTouchesRequired) ||
+            tapsMade > numberOfTapsRequired + 1 {
             state = .failed
             return
         }
+        
+        //  Initialize Touching
+        //if !trail.isEmpty {
+        //    trail.removeAll(keepingCapacity: true)
+        //}
+        //trail.append(location(in: view?.window))
+        startingPoint = location(in: view?.window)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesMoved(touches, with: event)
         
+        //  Don't do anything if the state is currently failed
         if state == .failed {
             return
         }
         
-        let loc = location(in: view)
-        state = .changed
-        
-        if tapsMade == numberOfTapsRequired + 1 {
-            let deltaX = loc.x - startingPoint.x
-            let deltaY = loc.y - startingPoint.y
-            
-            // Setting distance for minimum swipe
-            if 200 <= sqrt(deltaX * deltaX + deltaY * deltaY) {
-                state = .failed
-                return
-            } else {
-                swipeMade = true
-                state = .ended
-            }
-        } else {
+        //  Moves shouldn't be happening on taps
+        if tapsMade != numberOfTapsRequired + 1 {
             state = .failed
+            return
+        }   //  Check for correct number of touches already made
+        
+        let loc = location(in: view?.window)
+        //trail.append(loc)
+        
+        let deltaX = loc.x - /*trail.first!.x*/ startingPoint.x
+        let deltaY = loc.y - /*trail.first!.y*/ startingPoint.y
+        
+        if sqrt(deltaX * deltaX + deltaY * deltaY) >= minimumSwipeThresholdDistance {
+            swipeMade = true
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesEnded(touches, with: event)
         if swipeMade {
-            state = .ended
-        } else if tapsMade >= numberOfTapsRequired + 1 {
-            state = .failed
+            state = .recognized
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesCancelled(touches, with: event)
-        super.reset()
+        reset()
     }
+    
     
     //  IB Inspectables
     //      Taps
     @IBInspectable var taps: Int = 1 {
         didSet {
-            self.numberOfTapsRequired = taps
+            numberOfTapsRequired = taps
         }
     }
     @IBInspectable var tapTouches: Int = 1 {
         didSet {
-            self.numberOfTapTouchesRequired = tapTouches
+            numberOfTapTouchesRequired = tapTouches
         }
     }
     //      Swipes
     @IBInspectable var swipeTouches: Int = 1 {
         didSet {
-            self.numberOfSwipeTouchesRequired = swipeTouches
+            numberOfSwipeTouchesRequired = swipeTouches
+        }
+    }
+    @IBInspectable var minSwipeDistance: CGFloat = 200 {
+        didSet {
+            minimumSwipeThresholdDistance = minSwipeDistance
         }
     }
 }
