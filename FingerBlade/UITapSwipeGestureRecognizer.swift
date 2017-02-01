@@ -26,7 +26,7 @@ import UIKit.UIGestureRecognizerSubclass
     var timer: Timer?
     
     var startingPoint: CGPoint = CGPoint()
-    //var trail: [CGPoint] = []
+    var trail: [CGPoint] = []
     
     //  Testing items
     
@@ -39,9 +39,9 @@ import UIKit.UIGestureRecognizerSubclass
         
         startingPoint = CGPoint()
         
-        //if !trail.isEmpty {
-        //    trail.removeAll(keepingCapacity: true)
-        //}
+        if !trail.isEmpty {
+            trail.removeAll(keepingCapacity: true)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
@@ -60,10 +60,10 @@ import UIKit.UIGestureRecognizerSubclass
         }
         
         //  Initialize Touching
-        //if !trail.isEmpty {
-        //    trail.removeAll(keepingCapacity: true)
-        //}
-        //trail.append(location(in: view?.window))
+        if !trail.isEmpty {
+            trail.removeAll(keepingCapacity: true)
+        }
+        trail.append(location(in: view?.window))
         startingPoint = location(in: view?.window)
     }
     
@@ -82,7 +82,7 @@ import UIKit.UIGestureRecognizerSubclass
         }   //  Check for correct number of touches already made
         
         let loc = location(in: view?.window)
-        //trail.append(loc)
+        trail.append(loc)
         
         let deltaX = loc.x - /*trail.first!.x*/ startingPoint.x
         let deltaY = loc.y - /*trail.first!.y*/ startingPoint.y
