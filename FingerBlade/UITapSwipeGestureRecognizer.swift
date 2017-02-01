@@ -26,7 +26,7 @@ import UIKit.UIGestureRecognizerSubclass
     var timer: Timer?
     
     var startingPoint: CGPoint = CGPoint()
-    //var trail: [CGPoint]
+    //var trail: [CGPoint] = []
     
     //  Testing items
     
