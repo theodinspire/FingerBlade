@@ -17,7 +17,7 @@ import UIKit.UIGestureRecognizerSubclass
     var numberOfTapTouchesRequired: Int = 1
     //  Swipe Requirements
     var numberOfSwipeTouchesRequired: Int = 1
-    var minimumSwipeThresholdDistance: CGFloat = 200
+    var minimumSwipeThresholdDistance: CGFloat = 100
     
     //  Internal items
     var tapsMade = 0
@@ -38,6 +38,7 @@ import UIKit.UIGestureRecognizerSubclass
         timer = nil
         
         startingPoint = CGPoint()
+        //print(startingPoint)
         
         if !trail.isEmpty {
             trail.removeAll(keepingCapacity: true)
@@ -60,11 +61,12 @@ import UIKit.UIGestureRecognizerSubclass
         }
         
         //  Initialize Touching
+        startingPoint = location(in: view?.window)
+        
         if !trail.isEmpty {
             trail.removeAll(keepingCapacity: true)
         }
-        trail.append(location(in: view?.window))
-        startingPoint = location(in: view?.window)
+        trail.append(startingPoint)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
@@ -83,17 +85,19 @@ import UIKit.UIGestureRecognizerSubclass
         
         let loc = location(in: view?.window)
         trail.append(loc)
+        //print(loc)
         
         let deltaX = loc.x - /*trail.first!.x*/ startingPoint.x
         let deltaY = loc.y - /*trail.first!.y*/ startingPoint.y
         
-        if sqrt(deltaX * deltaX + deltaY * deltaY) >= minimumSwipeThresholdDistance {
+        if !swipeMade && sqrt(deltaX * deltaX + deltaY * deltaY) >= minimumSwipeThresholdDistance {
             swipeMade = true
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesEnded(touches, with: event)
+        //if let last = trail.last { print(last) }
         if swipeMade {
             state = .recognized
         }
@@ -136,7 +140,7 @@ import UIKit.UIGestureRecognizerSubclass
             numberOfSwipeTouchesRequired = swipeTouches
         }
     }
-    @IBInspectable var minSwipeDistance: CGFloat = 200 {
+    @IBInspectable var minSwipeDistance: CGFloat = 100 {
         didSet {
             minimumSwipeThresholdDistance = minSwipeDistance
         }

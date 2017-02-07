@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,34 +34,12 @@
                             <constraint firstItem="deE-vU-hfJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="28z-Mo-Lif"/>
                             <constraint firstItem="deE-vU-hfJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2CB-5S-nn6"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="j9W-kj-P8p" appends="YES" id="WCB-k5-Vf4"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="check" destination="deE-vU-hfJ" id="C5n-cy-rGN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <gestureRecognizer id="j9W-kj-P8p" customClass="UITapSwipeGestureRecognizer" customModule="FingerBlade" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="taps">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="tapTouches">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="swipeTouches">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="minSwipeDistance">
-                            <real key="value" value="200"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="handlerTapSwipe:" destination="BYZ-38-t0r" id="ehl-6T-U22"/>
-                    </connections>
-                </gestureRecognizer>
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="36.431784107946029"/>
         </scene>
