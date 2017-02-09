@@ -48,7 +48,8 @@ import UIKit.UIGestureRecognizerSubclass
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         print("Touch began")
-        startTimer()
+        
+        stopTimer()
         
         tapsMade += 1
         
@@ -100,6 +101,8 @@ import UIKit.UIGestureRecognizerSubclass
         //if let last = trail.last { print(last) }
         if swipeMade {
             state = .recognized
+        } else {
+            startTimer()
         }
     }
     
@@ -110,11 +113,15 @@ import UIKit.UIGestureRecognizerSubclass
     
     //  Timer Functions
     func startTimer() {
-        if let tmr = timer {
-            tmr.invalidate()
-        }
+        stopTimer()
         
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(fireTimer(_:)), userInfo: nil, repeats: false)
+    }
+    
+    func stopTimer() {
+        if let tmr = timer {
+            if tmr.isValid { tmr.invalidate() }
+        }
     }
     
     @objc func fireTimer(_ timer: Timer) {
