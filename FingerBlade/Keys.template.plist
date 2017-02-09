@@ -2,7 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>parsePoolID</key>
-	<string>poolID</string>
+	<key>S3</key>
+	<dict>
+		<key>Bucket</key>
+		<string>MyBucket</string>
+		<key>Region</key>
+		<string>USEast1</string>
+	</dict>
+	<key>Cognito</key>
+	<dict>
+		<key>UserPoolID</key>
+		<string>us-east-1:00000000-0000-0000-0000-000000000000</string>
+		<key>Region</key>
+		<string>USEast1</string>
+	</dict>
 </dict>
 </plist>

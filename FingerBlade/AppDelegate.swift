@@ -9,7 +9,7 @@
 import UIKit
 
 import AWSCore
-import AWSCognito
+//import AWSCognito
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,21 +20,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //  AWS set up
+        //  Cognito
         var awsPoolID: String?
+        var awsCogRegion: String?
+        //  S3
+        var awsBucket: String?
+        var awsS3Region: String?
         
         var keyDictionary: [String : Any]?
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
             keyDictionary = NSDictionary(contentsOfFile: path) as? [String : Any]
         }
-        if let keyDict = keyDictionary {
-            awsPoolID = keyDict["parsePoolID"] as? String
+        if let keyDict = keyDictionary, let s3 = keyDict["S3"] as? [String: String], let cognito = keyDict["Cognito"] as? [String: String] {
+            awsPoolID = cognito["UserPoolID"]
+            awsCogRegion = cognito["Region"]
+            awsBucket = s3["Bucket"]
+            awsS3Region = s3["Region"]
         }
         
         //  Setting up AWS Service Configuration
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast2, identityPoolId: awsPoolID!)
-        let configuration = AWSServiceConfiguration(region: .USEast2, credentialsProvider: credentialsProvider)
+        //let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast2, identityPoolId: awsPoolID!)
+        //let configuration = AWSServiceConfiguration(region: .USEast2, credentialsProvider: credentialsProvider)
         
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        //AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         
         //  End set up
