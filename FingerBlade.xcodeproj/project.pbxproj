@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C43CB88DFC27B34F691E04A /* Pods_FingerBlade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */; };
+		A07691741E4C0F76004DF141 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A07691731E4C0F76004DF141 /* Keys.plist */; };
 		A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866BB1E3C398D009E54F6 /* AppDelegate.swift */; };
 		A07866BE1E3C398D009E54F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866BD1E3C398D009E54F6 /* ViewController.swift */; };
 		A07866C11E3C398D009E54F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07866BF1E3C398D009E54F6 /* Main.storyboard */; };
@@ -27,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1483090703F751B942F2E77E /* Pods-FingerBlade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.debug.xcconfig"; sourceTree = "<group>"; };
+		945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.release.xcconfig"; sourceTree = "<group>"; };
+		A07691731E4C0F76004DF141 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A07866B81E3C398D009E54F6 /* FingerBlade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerBlade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07866BB1E3C398D009E54F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A07866BD1E3C398D009E54F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +43,7 @@
 		A07866D01E3C398E009E54F6 /* FingerBladeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerBladeTests.swift; sourceTree = "<group>"; };
 		A07866D21E3C398E009E54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapSwipeGestureRecognizer.swift; sourceTree = "<group>"; };
+		AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerBlade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C43CB88DFC27B34F691E04A /* Pods_FingerBlade.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +65,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C9CC0B265821A695061A1D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1483090703F751B942F2E77E /* Pods-FingerBlade.debug.xcconfig */,
+				945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A07866AF1E3C398D009E54F6 = {
 			isa = PBXGroup;
 			children = (
 				A07866BA1E3C398D009E54F6 /* FingerBlade */,
 				A07866CF1E3C398E009E54F6 /* FingerBladeTests */,
 				A07866B91E3C398D009E54F6 /* Products */,
+				5C9CC0B265821A695061A1D6 /* Pods */,
+				FB46A402ADF2A16049CE2230 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +104,7 @@
 				A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */,
 				A07866C71E3C398D009E54F6 /* Info.plist */,
 				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
+				A07691731E4C0F76004DF141 /* Keys.plist */,
 			);
 			path = FingerBlade;
 			sourceTree = "<group>";
@@ -99,6 +118,14 @@
 			path = FingerBladeTests;
 			sourceTree = "<group>";
 		};
+		FB46A402ADF2A16049CE2230 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A07866D51E3C398E009E54F6 /* Build configuration list for PBXNativeTarget "FingerBlade" */;
 			buildPhases = (
+				8933B04FD75EA94117801CA7 /* [CP] Check Pods Manifest.lock */,
 				A07866B41E3C398D009E54F6 /* Sources */,
 				A07866B51E3C398D009E54F6 /* Frameworks */,
 				A07866B61E3C398D009E54F6 /* Resources */,
+				ED3E7E390F0C8724C26E4121 /* [CP] Embed Pods Frameworks */,
+				F7196E611493DC0A3116F525 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07691741E4C0F76004DF141 /* Keys.plist in Resources */,
 				A07866C61E3C398D009E54F6 /* LaunchScreen.storyboard in Resources */,
 				A07866C31E3C398D009E54F6 /* Assets.xcassets in Resources */,
 				A07866C11E3C398D009E54F6 /* Main.storyboard in Resources */,
@@ -196,6 +227,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8933B04FD75EA94117801CA7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED3E7E390F0C8724C26E4121 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7196E611493DC0A3116F525 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A07866B41E3C398D009E54F6 /* Sources */ = {
@@ -339,6 +418,7 @@
 		};
 		A07866D61E3C398E009E54F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1483090703F751B942F2E77E /* Pods-FingerBlade.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FingerBlade/Info.plist;
@@ -351,6 +431,7 @@
 		};
 		A07866D71E3C398E009E54F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FingerBlade/Info.plist;
@@ -408,6 +489,7 @@
 				A07866D71E3C398E009E54F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A07866D81E3C398E009E54F6 /* Build configuration list for PBXNativeTarget "FingerBladeTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +498,7 @@
 				A07866DA1E3C398E009E54F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
