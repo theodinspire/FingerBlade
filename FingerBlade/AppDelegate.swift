@@ -8,14 +8,36 @@
 
 import UIKit
 
+import AWSCore
+import AWSCognito
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //  AWS set up
+        var awsPoolID: String?
+        
+        var keyDictionary: [String : Any]?
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+            keyDictionary = NSDictionary(contentsOfFile: path) as? [String : Any]
+        }
+        if let keyDict = keyDictionary {
+            awsPoolID = keyDict["parsePoolID"] as? String
+        }
+        
+        //  Setting up AWS Service Configuration
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .USEast2, identityPoolId: awsPoolID!)
+        let configuration = AWSServiceConfiguration(region: .USEast2, credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        
+        //  End set up
         return true
     }
 
