@@ -9,15 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var check: UILabel!
+    @IBOutlet weak var cutToMake: UILabel!
     
     var timer: Timer?
-    var paths: [[CGPoint]] = []
+    var cuts = CutLine.all.makeIterator()
+    var currentCut: CutLine?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         check.text = ""
+        cutToMake.text = nextCut()
         
         let recognizer = UITapSwipeGestureRecognizer(target: self, action: #selector(handleTapSwipe(_:)))
         
@@ -39,21 +43,26 @@ class ViewController: UIViewController {
         check.text = "✔"
         
         let trail = sender.trail
-        paths.append(trail)
-        drawPath(along: trail)
+        
+        for point in trail {
+            print(point)
+        }
         
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.timerFired(timer:)), userInfo: nil, repeats: false)
+        
+        //  TODO: Add item to SampleStore
+        cutToMake.text = nextCut()
     }
     
     @objc func timerFired(timer: Timer) {
         self.view.backgroundColor = UIColor.white
         check.text = ""
-        //aPath = UIBezierPath()
     }
     
-    func drawPath(along trail:[CGPoint]) {
-        // TODO: Figure out how to draw a path
+    func nextCut() -> String {
+        currentCut = cuts.next()
+        
+        return currentCut?.rawValue ?? "Done"
     }
     
 }
-

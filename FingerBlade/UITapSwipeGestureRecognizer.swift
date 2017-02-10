@@ -38,7 +38,6 @@ import UIKit.UIGestureRecognizerSubclass
         timer = nil
         
         startingPoint = CGPoint()
-        //print(startingPoint)
         
         if !trail.isEmpty {
             trail.removeAll(keepingCapacity: true)
@@ -47,7 +46,6 @@ import UIKit.UIGestureRecognizerSubclass
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
-        print("Touch began")
         
         stopTimer()
         
@@ -86,7 +84,6 @@ import UIKit.UIGestureRecognizerSubclass
         
         let loc = location(in: view?.window)
         trail.append(loc)
-        //print(loc)
         
         let deltaX = loc.x - /*trail.first!.x*/ startingPoint.x
         let deltaY = loc.y - /*trail.first!.y*/ startingPoint.y
@@ -98,7 +95,6 @@ import UIKit.UIGestureRecognizerSubclass
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesEnded(touches, with: event)
-        //if let last = trail.last { print(last) }
         if swipeMade {
             state = .recognized
         } else {

@@ -18,6 +18,8 @@
 		A07866C61E3C398D009E54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */; };
 		A07866D11E3C398E009E54F6 /* FingerBladeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866D01E3C398E009E54F6 /* FingerBladeTests.swift */; };
 		A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */; };
+		A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446ED1E4E555E006602D4 /* SampleStore.swift */; };
+		A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446EF1E4E55EF006602D4 /* CutLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		A07866D01E3C398E009E54F6 /* FingerBladeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerBladeTests.swift; sourceTree = "<group>"; };
 		A07866D21E3C398E009E54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapSwipeGestureRecognizer.swift; sourceTree = "<group>"; };
+		A0B446ED1E4E555E006602D4 /* SampleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleStore.swift; sourceTree = "<group>"; };
+		A0B446EF1E4E55EF006602D4 /* CutLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutLine.swift; sourceTree = "<group>"; };
 		AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerBlade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,7 @@
 			children = (
 				A0199F351E4CFB0600DA581A /* AWSRegionType.swift */,
 				A0199F371E4D00DA00DA581A /* KeyRing.swift */,
+				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 		A07866BA1E3C398D009E54F6 /* FingerBlade */ = {
 			isa = PBXGroup;
 			children = (
+				A0B446EC1E4E5530006602D4 /* Data */,
 				A0199F341E4CFAE000DA581A /* Helpers */,
 				A07866BB1E3C398D009E54F6 /* AppDelegate.swift */,
 				A07866BD1E3C398D009E54F6 /* ViewController.swift */,
@@ -130,6 +136,14 @@
 				A07866D21E3C398E009E54F6 /* Info.plist */,
 			);
 			path = FingerBladeTests;
+			sourceTree = "<group>";
+		};
+		A0B446EC1E4E5530006602D4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A0B446ED1E4E555E006602D4 /* SampleStore.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		FB46A402ADF2A16049CE2230 /* Frameworks */ = {
@@ -296,9 +310,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A07866BE1E3C398D009E54F6 /* ViewController.swift in Sources */,
+				A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */,
 				A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */,
 				A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */,
 				A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */,
+				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
