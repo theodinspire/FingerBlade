@@ -15,13 +15,14 @@ class ViewController: UIViewController {
     
     var timer: Timer?
     var cuts = CutLine.all.makeIterator()
+    let store = SampleStore()
     var currentCut: CutLine?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         check.text = ""
-        cutToMake.text = nextCut()
+        cutToMake.text = nextCut()?.rawValue ?? "Done"
         
         let recognizer = UITapSwipeGestureRecognizer(target: self, action: #selector(handleTapSwipe(_:)))
         
@@ -48,10 +49,14 @@ class ViewController: UIViewController {
             print(point)
         }
         
+        if let cut = currentCut {
+            store.put(trail: trail, into: cut)
+        }
+        
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.timerFired(timer:)), userInfo: nil, repeats: false)
         
         //  TODO: Add item to SampleStore
-        cutToMake.text = nextCut()
+        cutToMake.text = nextCut()?.rawValue ?? "Done"
     }
     
     @objc func timerFired(timer: Timer) {
@@ -59,10 +64,10 @@ class ViewController: UIViewController {
         check.text = ""
     }
     
-    func nextCut() -> String {
+    func nextCut() -> CutLine? {
         currentCut = cuts.next()
         
-        return currentCut?.rawValue ?? "Done"
+        return currentCut
     }
     
 }

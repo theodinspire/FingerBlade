@@ -7,7 +7,37 @@
 //
 
 import Foundation
+import UIKit
 
 class SampleStore {
-    var boo = 0
+    private var trails = [CutLine : [[CGPoint]]]()
+    
+    func put(trail: [CGPoint], into cut: CutLine) {
+        if trails.keys.contains(cut) {
+            trails[cut]?.append(trail)
+        } else {
+            trails[cut] = [trail]
+        }
+    }
+    
+    func get(from cut: CutLine) -> [[CGPoint]]? {
+        return trails[cut]
+    }
+    
+    func getVerboseString() -> String {
+        var text = ""
+        
+        for (cut, trailList) in trails {
+            text += cut.rawValue + "\n"
+            for trail in trailList {
+                for (i, point) in trail.enumerated() {
+                    text += (i == 0 ? ", " : "") + String(describing: point)
+                }
+                text += "\n"
+            }
+            text += "\n"
+        }
+        
+        return text
+    }
 }
