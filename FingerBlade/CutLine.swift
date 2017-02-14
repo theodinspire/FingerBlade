@@ -23,11 +23,12 @@ enum CutLine: String {
     case sotRivFal  = "Sottano Riverso Falso"
     case punSot     = "Punta Sottomana"
     case punSop     = "Punta Sopromana"
+    case punCav     = "Punta Sottomana con Cavazione"
     
     static var all: [CutLine] {
         return [.fendManTut, .fendManMez, .fendRivTut,
             .fendRivMez, .mezMan, .mezRiv, .sotManTut,
             .sotManMez, .sotManFal, .sotRivTut, .sotRivMez,
-            .sotRivFal, .punSot, .punSot]
+            .sotRivFal, .punSot, .punSot, .punCav]
     }
 }
