@@ -85,8 +85,6 @@
 		A0199F341E4CFAE000DA581A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A0199F351E4CFB0600DA581A /* AWSRegionType.swift */,
-				A0199F371E4D00DA00DA581A /* KeyRing.swift */,
 				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
 			);
 			name = Helpers;
@@ -115,6 +113,7 @@
 		A07866BA1E3C398D009E54F6 /* FingerBlade */ = {
 			isa = PBXGroup;
 			children = (
+				A0E295951E52753E00B2224F /* AWS */,
 				A0B446EC1E4E5530006602D4 /* Data */,
 				A0199F341E4CFAE000DA581A /* Helpers */,
 				A07866BB1E3C398D009E54F6 /* AppDelegate.swift */,
@@ -144,6 +143,15 @@
 				A0B446ED1E4E555E006602D4 /* SampleStore.swift */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		A0E295951E52753E00B2224F /* AWS */ = {
+			isa = PBXGroup;
+			children = (
+				A0199F351E4CFB0600DA581A /* AWSRegionType.swift */,
+				A0199F371E4D00DA00DA581A /* KeyRing.swift */,
+			);
+			name = AWS;
 			sourceTree = "<group>";
 		};
 		FB46A402ADF2A16049CE2230 /* Frameworks */ = {
