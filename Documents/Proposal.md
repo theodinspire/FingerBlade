@@ -38,23 +38,23 @@ them to storage to be used in training the neural network.
 
 ## Screens
 Screen on first load:<br />
-![First time loaded](prop1.png)
+![First time loaded](http://i.imgur.com/ZLYLjb3.png)
 
 Transitions to:<br />
-![Are you a toll or a smol?](prop2.png)
+![Are you a toll or a smol?](http://imgur.com/1UtVydn.png)
 
 Transitions to:<br />
-![Who are you?](prop3.png)
+![Who are you?](http://imgur.com/13axD2O.png)
 
 Transitions to:<br />
-![Tappy Swipey](prop4.png)<br />
+![Tappy Swipey](http://imgur.com/RuOq46K.png)<br />
 This will continue through 10(?) iterations of each cut, or until the user click
 'Cancel'.
 
 On complete, transitions to:<br />
-![Thanks!](prop5.png)
+![Thanks!](http://imgur.com/tV4f14v.png)
 
 Previous screen transitions here, or if user canceled out of sampling:<br />
-![Settings & al.](prop6.png)<br />
+![Settings & al.](http://imgur.com/HCi0YsC.png)<br />
 If user had canceled, they can resume. If they had completed it, it would start
 anew.
