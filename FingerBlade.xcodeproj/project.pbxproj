@@ -10,6 +10,7 @@
 		1C43CB88DFC27B34F691E04A /* Pods_FingerBlade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */; };
 		A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F351E4CFB0600DA581A /* AWSRegionType.swift */; };
 		A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F371E4D00DA00DA581A /* KeyRing.swift */; };
+		A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */; };
 		A07691741E4C0F76004DF141 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A07691731E4C0F76004DF141 /* Keys.plist */; };
 		A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866BB1E3C398D009E54F6 /* AppDelegate.swift */; };
 		A07866BE1E3C398D009E54F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866BD1E3C398D009E54F6 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.release.xcconfig"; sourceTree = "<group>"; };
 		A0199F351E4CFB0600DA581A /* AWSRegionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSRegionType.swift; sourceTree = "<group>"; };
 		A0199F371E4D00DA00DA581A /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
+		A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFileHandler.swift; sourceTree = "<group>"; };
 		A07691731E4C0F76004DF141 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A07866B81E3C398D009E54F6 /* FingerBlade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerBlade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07866BB1E3C398D009E54F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,8 +88,28 @@
 			isa = PBXGroup;
 			children = (
 				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
+				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		A01B0FCA1E554CBA00C1C195 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A07866BB1E3C398D009E54F6 /* AppDelegate.swift */,
+				A07866BD1E3C398D009E54F6 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A01B0FCB1E554CC800C1C195 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
+				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
+				A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		A07866AF1E3C398D009E54F6 = {
@@ -113,16 +135,12 @@
 		A07866BA1E3C398D009E54F6 /* FingerBlade */ = {
 			isa = PBXGroup;
 			children = (
+				A01B0FCA1E554CBA00C1C195 /* Controllers */,
 				A0E295951E52753E00B2224F /* AWS */,
 				A0B446EC1E4E5530006602D4 /* Data */,
 				A0199F341E4CFAE000DA581A /* Helpers */,
-				A07866BB1E3C398D009E54F6 /* AppDelegate.swift */,
-				A07866BD1E3C398D009E54F6 /* ViewController.swift */,
-				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
-				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
-				A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */,
+				A01B0FCB1E554CC800C1C195 /* UI */,
 				A07866C71E3C398D009E54F6 /* Info.plist */,
-				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
 				A07691731E4C0F76004DF141 /* Keys.plist */,
 			);
 			path = FingerBlade;
@@ -141,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				A0B446ED1E4E555E006602D4 /* SampleStore.swift */,
+				A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -317,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */,
 				A07866BE1E3C398D009E54F6 /* ViewController.swift in Sources */,
 				A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */,
 				A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */,

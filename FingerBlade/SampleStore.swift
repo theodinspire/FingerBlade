@@ -31,7 +31,7 @@ class SampleStore {
             text += cut.rawValue + "\n"
             for trail in trailList {
                 for (i, point) in trail.enumerated() {
-                    text += (i == 0 ? ", " : "") + String(describing: point)
+                    text += (i != 0 ? ", " : "") + String(describing: point)
                 }
                 text += "\n"
             }

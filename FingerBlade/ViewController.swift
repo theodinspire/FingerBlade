@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     var cuts = CutLine.all.makeIterator()
     let store = SampleStore()
     var currentCut: CutLine?
+    
+    var sentFile = false
+    let filename = "test.txt"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,4 +73,14 @@ class ViewController: UIViewController {
         return currentCut
     }
     
+    @IBAction func sendFile(_ sender: UIBarButtonItem) {
+        if !sentFile {
+            sentFile = true
+            
+            let handler = DataFileHandler(filename: filename)
+            handler.writeSample(store: store)
+            
+            handler.send()
+        }
+    }
 }

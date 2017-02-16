@@ -50,4 +50,8 @@ class KeyRing {
             return instance.isSetUp
         }
     }
+    
+    //  Get things from the ring
+    static var bucket: String? { get { return instance.awsS3Bucket } }
+    static var s3Region: AWSRegionType? { get { return instance.awsS3Region } }
 }
