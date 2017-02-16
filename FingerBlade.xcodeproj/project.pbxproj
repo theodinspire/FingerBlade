@@ -21,6 +21,7 @@
 		A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */; };
 		A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446ED1E4E555E006602D4 /* SampleStore.swift */; };
 		A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446EF1E4E55EF006602D4 /* CutLine.swift */; };
+		A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4470F1E5612FB006602D4 /* Transmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapSwipeGestureRecognizer.swift; sourceTree = "<group>"; };
 		A0B446ED1E4E555E006602D4 /* SampleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleStore.swift; sourceTree = "<group>"; };
 		A0B446EF1E4E55EF006602D4 /* CutLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutLine.swift; sourceTree = "<group>"; };
+		A0B4470F1E5612FB006602D4 /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
 		AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerBlade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 			children = (
 				A0199F351E4CFB0600DA581A /* AWSRegionType.swift */,
 				A0199F371E4D00DA00DA581A /* KeyRing.swift */,
+				A0B4470F1E5612FB006602D4 /* Transmitter.swift */,
 			);
 			name = AWS;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */,
 				A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */,
 				A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */,
+				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
 				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
 			);
