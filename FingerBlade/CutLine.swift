@@ -29,6 +29,6 @@ enum CutLine: String {
         return [.fendManTut, .fendManMez, .fendRivTut,
             .fendRivMez, .mezMan, .mezRiv, .sotManTut,
             .sotManMez, .sotManFal, .sotRivTut, .sotRivMez,
-            .sotRivFal, .punSot, .punSot, .punCav]
+            .sotRivFal, .punSot, .punSop, .punCav]
     }
 }
