@@ -68,6 +68,7 @@ class ViewController: UIViewController {
             count = 1
             cutToMake.text = nextCut()?.rawValue ?? "Done"
         }
+        countMarker?.text = String(count)
     }
     
     @objc func timerFired(timer: Timer) {
