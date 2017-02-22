@@ -234,6 +234,7 @@
 				TargetAttributes = {
 					A07866B71E3C398D009E54F6 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = MQ79U7S5FQ;
 						ProvisioningStyle = Automatic;
 					};
 					A07866CB1E3C398E009E54F6 = {
@@ -481,6 +482,7 @@
 			baseConfigurationReference = 1483090703F751B942F2E77E /* Pods-FingerBlade.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MQ79U7S5FQ;
 				INFOPLIST_FILE = FingerBlade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.theodinspire.FingerBlade;
@@ -494,6 +496,7 @@
 			baseConfigurationReference = 945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MQ79U7S5FQ;
 				INFOPLIST_FILE = FingerBlade/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.theodinspire.FingerBlade;
