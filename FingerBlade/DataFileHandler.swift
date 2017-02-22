@@ -40,38 +40,6 @@ class DataFileHandler {
     }
     
     func send() {
-        let transferUtility = AWSS3TransferUtility.default()
-        let expression = AWSS3TransferUtilityUploadExpression()
-        let completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock = { (task, error) -> Void in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("Failed with error: \(error)")
-                } else {
-                    print("Successful upload")
-                }
-            }
-        }
-        
-        let data = fileManager.contents(atPath: tmpDirectory.appending(filename))
-        
-        if let data = data {
-            transferUtility.uploadData(
-                data,
-                bucket: KeyRing.bucket!,
-                key: filename,
-                contentType: "text/plain",
-                expression: expression,
-                completionHandler: completionHandler).continueWith { (task) -> AnyObject! in
-                    if let error = task.error {
-                        print("Error: \(error.localizedDescription)")
-                    }
-                    
-                    if let _ = task.result {
-                        print("Upload Starting!")
-                    }
-                    
-                    return nil
-            }
-        }
+        Transmitter.upload(data: fileManager.contents(atPath: tmpDirectory.appending(filename)), named: filename)
     }
 }

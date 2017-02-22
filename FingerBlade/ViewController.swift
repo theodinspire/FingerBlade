@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var check: UILabel!
     @IBOutlet weak var cutToMake: UILabel!
+    @IBOutlet weak var countMarker: UILabel!
     
     var timer: Timer?
     var cuts = CutLine.all.makeIterator()
@@ -20,12 +21,15 @@ class ViewController: UIViewController {
     
     var sentFile = false
     let filename = "test.txt"
+    
+    var count = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         check.text = ""
         cutToMake.text = nextCut()?.rawValue ?? "Done"
+        countMarker.text = String(count)
         
         let recognizer = UITapSwipeGestureRecognizer(target: self, action: #selector(handleTapSwipe(_:)))
         
@@ -58,8 +62,12 @@ class ViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.timerFired(timer:)), userInfo: nil, repeats: false)
         
-        //  TODO: Add item to SampleStore
-        cutToMake.text = nextCut()?.rawValue ?? "Done"
+        
+        count += 1
+        if count >= 4 {
+            count = 1
+            cutToMake.text = nextCut()?.rawValue ?? "Done"
+        }
     }
     
     @objc func timerFired(timer: Timer) {
