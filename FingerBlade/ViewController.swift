@@ -9,15 +9,27 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var check: UILabel!
+    @IBOutlet weak var cutToMake: UILabel!
+    @IBOutlet weak var countMarker: UILabel!
     
     var timer: Timer?
-    var paths: [[CGPoint]] = []
+    var cuts = CutLine.all.makeIterator()
+    let store = SampleStore()
+    var currentCut: CutLine?
+    
+    var sentFile = false
+    let filename = "test.txt"
+    
+    var count = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         check.text = ""
+        cutToMake.text = nextCut()?.rawValue ?? "Done"
+        countMarker.text = String(count)
         
         let recognizer = UITapSwipeGestureRecognizer(target: self, action: #selector(handleTapSwipe(_:)))
         
@@ -39,21 +51,45 @@ class ViewController: UIViewController {
         check.text = "✔"
         
         let trail = sender.trail
-        paths.append(trail)
-        drawPath(along: trail)
+        
+        for point in trail {
+            print(point)
+        }
+        
+        if let cut = currentCut {
+            store.put(trail: trail, into: cut)
+        }
         
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.timerFired(timer:)), userInfo: nil, repeats: false)
+        
+        
+        count += 1
+        if count >= 4 {
+            count = 1
+            cutToMake.text = nextCut()?.rawValue ?? "Done"
+        }
+        countMarker?.text = String(count)
     }
     
     @objc func timerFired(timer: Timer) {
         self.view.backgroundColor = UIColor.white
         check.text = ""
-        //aPath = UIBezierPath()
     }
     
-    func drawPath(along trail:[CGPoint]) {
-        // TODO: Figure out how to draw a path
+    func nextCut() -> CutLine? {
+        currentCut = cuts.next()
+        
+        return currentCut
     }
     
+    @IBAction func sendFile(_ sender: UIBarButtonItem) {
+        if !sentFile {
+            sentFile = true
+            
+            let handler = DataFileHandler(filename: filename)
+            handler.writeSample(store: store)
+            
+            handler.send()
+        }
+    }
 }
-
