@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C43CB88DFC27B34F691E04A /* Pods_FingerBlade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */; };
+		A007A1C81E688868009D2395 /* CutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A007A1C71E688868009D2395 /* CutView.swift */; };
+		A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A007A1C91E68B053009D2395 /* CutViewController.swift */; };
 		A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F351E4CFB0600DA581A /* AWSRegionType.swift */; };
 		A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F371E4D00DA00DA581A /* KeyRing.swift */; };
 		A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		1483090703F751B942F2E77E /* Pods-FingerBlade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.debug.xcconfig"; sourceTree = "<group>"; };
 		945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.release.xcconfig"; sourceTree = "<group>"; };
+		A007A1C71E688868009D2395 /* CutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutView.swift; sourceTree = "<group>"; };
+		A007A1C91E68B053009D2395 /* CutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutViewController.swift; sourceTree = "<group>"; };
 		A0199F351E4CFB0600DA581A /* AWSRegionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSRegionType.swift; sourceTree = "<group>"; };
 		A0199F371E4D00DA00DA581A /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
 		A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFileHandler.swift; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A007A1C61E68883C009D2395 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A007A1C71E688868009D2395 /* CutView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		A0199F341E4CFAE000DA581A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +121,7 @@
 				A07866BD1E3C398D009E54F6 /* WelcomeViewController.swift */,
 				A089910C1E611B5E00259058 /* HandViewController.swift */,
 				A089910E1E611B8B00259058 /* SubscribeViewController.swift */,
+				A007A1C91E68B053009D2395 /* CutViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -146,11 +159,12 @@
 		A07866BA1E3C398D009E54F6 /* FingerBlade */ = {
 			isa = PBXGroup;
 			children = (
-				A01B0FCA1E554CBA00C1C195 /* Controllers */,
 				A0E295951E52753E00B2224F /* AWS */,
 				A0B446EC1E4E5530006602D4 /* Data */,
-				A0199F341E4CFAE000DA581A /* Helpers */,
+				A01B0FCA1E554CBA00C1C195 /* Controllers */,
+				A007A1C61E68883C009D2395 /* View */,
 				A01B0FCB1E554CC800C1C195 /* UI */,
+				A0199F341E4CFAE000DA581A /* Helpers */,
 				A07866C71E3C398D009E54F6 /* Info.plist */,
 				A07691731E4C0F76004DF141 /* Keys.plist */,
 			);
@@ -356,11 +370,13 @@
 				A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */,
 				A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */,
 				A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */,
+				A007A1C81E688868009D2395 /* CutView.swift in Sources */,
 				A03BFCD41E67B8FC00051570 /* CutDrawPath.swift in Sources */,
 				A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */,
 				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
 				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
+				A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

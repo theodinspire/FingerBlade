@@ -24,8 +24,10 @@ struct CutDrawPath {
             return
         }
         
-        start = steps.first!
-        path = [CGPoint](steps.suffix(1))
+        var tmp = steps
+        
+        start = tmp.remove(at: 0)
+        path = tmp
     }
     
     init(string: String) {
@@ -36,10 +38,28 @@ struct CutDrawPath {
     static func getExemplar(cut: CutLine, lefty: Bool = false) -> CutDrawPath {
         switch cut {
         case .fendManTut:
-            return CutDrawPath(string: "(27.0, 52.0), (31.0, 57.0), (40.0, 72.0), (61.0, 104.0), (88.0, 146.0), (118.0, 191.0), (151.0, 239.0), (181.0, 290.0), (207.0, 335.0), (228.0, 376.0), (248.0, 417.0), (269.0, 446.0), (288.0, 466.0), (305.0, 482.0), (317.0, 493.0), (328.0, 502.0), (332.0, 508.0), (334.0, 510.0), (335.0, 510.0), (335.0, 511.0), (341.0, 520.0)")
+            return CutDrawPath(string: "(35.0, 80.0), (41.0, 86.0), (53.0, 106.0), (72.0, 139.0), (94.0, 177.0), (119.0, 217.0), (143.0, 258.0), (166.0, 298.0), (189.0, 334.0), (213.0, 366.0), (233.0, 401.0), (249.0, 434.0), (263.0, 456.0), (276.0, 474.0), (287.0, 489.0), (297.0, 501.0), (305.0, 511.0), (309.0, 516.0), (312.0, 519.0), (316.0, 521.0)")
         default:
             return CutDrawPath(path: [])
         }
+    }
+    
+    func maxSpeed(bounds rect: CGRect) -> CGFloat {
+        var maxSpeed: CGFloat = 0
+        var prev = start
+        
+        for point in path {
+            let dx = point.x - prev.x
+            let dy = point.y - prev.y
+            
+            let speed = sqrt(dx * dx + dy * dy)
+            
+            maxSpeed = max(maxSpeed, speed)
+            
+            prev = point
+        }
+        
+        return maxSpeed
     }
 }
 
