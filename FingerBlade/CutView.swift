@@ -9,10 +9,10 @@
 import UIKit
 
 class CutView: UIView {
-    var cut: CutLine = .fendManTut
+    var cut: CutLine = .punCav
     
-    var minLineWidth: CGFloat = 15 // Cannot be zero
-    var maxLineWidth: CGFloat = 25
+    var minLineWidth: CGFloat = 5 // Cannot be zero
+    var maxLineWidth: CGFloat = 15
     
     var targetColor = UIColor.black
 
@@ -20,6 +20,16 @@ class CutView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        //  REMOVE
+        let normalize = { (point: CGPoint) -> CGPoint in
+            return CGPoint(x: point.x / self.bounds.width, y: point.y / self.bounds.height)
+        }
+        
+        let mirror = { (point: CGPoint) -> CGPoint in
+            return CGPoint(x: 1 - point.x, y: point.y)
+        }
+        
         // Drawing code
         let targetPath = CutDrawPath.getExemplar(cut: cut)
         
@@ -28,17 +38,23 @@ class CutView: UIView {
         var prev = targetPath.start
         var lastSpeed: CGFloat = 7
         
+        var norm = normalize(prev)
+        var normList = String(describing: norm)
+        var flipList = String(describing: mirror(norm))
+        
         let deltaWidth = maxLineWidth - minLineWidth
         let maxSpeed = targetPath.maxSpeed(bounds: bounds)
         
         for point in targetPath.path {
+            norm = normalize(point)
+            normList += ", " + String(describing: norm)
+            flipList += ", " + String(describing: mirror(norm))
             
             let dx = point.x - prev.x
             let dy = point.y - prev.y
             
             let speed = sqrt(dx * dx + dy * dy)
             let deltaSpeed = speed - lastSpeed
-            //print(speed)
             
             var tmp = prev
             
@@ -55,7 +71,6 @@ class CutView: UIView {
                 
                 //  Set line width
                 let changedSpeed = lastSpeed + deltaSpeed * stepChange
-                print(changedSpeed)
                 let normSpeed = changedSpeed / maxSpeed
                 //  Use for narrow ends and wide middles
                 //let lineWidth = deltaWidth * normSpeed + minLineWidth
@@ -77,6 +92,11 @@ class CutView: UIView {
             prev = point
             lastSpeed = speed
         }
+        
+        print("Norm")
+        print(normList)
+        print("Flip")
+        print(flipList)
     }
 
 }

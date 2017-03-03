@@ -17,7 +17,7 @@ enum CutLine: String {
     case mezRiv     = "Mezzano Riverso"
     case sotManTut  = "Sottano Mandritto Tutto"
     case sotManMez  = "Sottano Mandritto Mezzo"
-    case sotManFal  = "Sottano Mandritto Tutto Falso"
+    case sotManFal  = "Sottano Mandritto Falso"
     case sotRivTut  = "Sottano Riverso Tutto"
     case sotRivMez  = "Sottano Riverso Mezzo"
     case sotRivFal  = "Sottano Riverso Falso"

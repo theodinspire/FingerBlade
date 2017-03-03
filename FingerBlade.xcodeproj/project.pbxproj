@@ -27,6 +27,7 @@
 		A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446ED1E4E555E006602D4 /* SampleStore.swift */; };
 		A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446EF1E4E55EF006602D4 /* CutLine.swift */; };
 		A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4470F1E5612FB006602D4 /* Transmitter.swift */; };
+		A0FE14271E691DF400CF6A3B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE14261E691DF400CF6A3B /* Global.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		A0B446ED1E4E555E006602D4 /* SampleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleStore.swift; sourceTree = "<group>"; };
 		A0B446EF1E4E55EF006602D4 /* CutLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutLine.swift; sourceTree = "<group>"; };
 		A0B4470F1E5612FB006602D4 /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
+		A0FE14261E691DF400CF6A3B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerBlade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
 				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
 				A03BFCD31E67B8FC00051570 /* CutDrawPath.swift */,
+				A0FE14261E691DF400CF6A3B /* Global.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */,
 				A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */,
 				A007A1C81E688868009D2395 /* CutView.swift in Sources */,
+				A0FE14271E691DF400CF6A3B /* Global.swift in Sources */,
 				A03BFCD41E67B8FC00051570 /* CutDrawPath.swift in Sources */,
 				A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */,
 				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
