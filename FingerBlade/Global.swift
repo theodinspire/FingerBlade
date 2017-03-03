@@ -20,7 +20,7 @@ func createCGPointArray(from string: String) -> [CGPoint] {
             break
         }
         
-        array.append(CGPoint(x: x + 40, y: y + 10))
+        array.append(CGPoint(x: x, y: y))
     }
     
     return array
