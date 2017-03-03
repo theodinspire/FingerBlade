@@ -111,7 +111,6 @@
 			children = (
 				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
 				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
-				A03BFCD31E67B8FC00051570 /* CutDrawPath.swift */,
 				A0FE14261E691DF400CF6A3B /* Global.swift */,
 			);
 			name = Helpers;
@@ -188,6 +187,7 @@
 			children = (
 				A0B446ED1E4E555E006602D4 /* SampleStore.swift */,
 				A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */,
+				A03BFCD31E67B8FC00051570 /* CutDrawPath.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";

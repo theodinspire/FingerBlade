@@ -21,35 +21,19 @@ class CutView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        //  REMOVE
-        let normalize = { (point: CGPoint) -> CGPoint in
-            return CGPoint(x: point.x / self.bounds.width, y: point.y / self.bounds.height)
-        }
-        
-        let mirror = { (point: CGPoint) -> CGPoint in
-            return CGPoint(x: 1 - point.x, y: point.y)
-        }
-        
         // Drawing code
-        let targetPath = CutDrawPath.getExemplar(cut: cut)
+        let targetPath = CutDrawPath.getExemplar(cut: cut, bounds: bounds)
         
         targetColor.set()
         
         var prev = targetPath.start
-        var lastSpeed: CGFloat = 7
+        var lastSpeed = targetPath.initialSpeed
+        let maxSpeed = targetPath.maxSpeed
         
-        var norm = normalize(prev)
-        var normList = String(describing: norm)
-        var flipList = String(describing: mirror(norm))
         
         let deltaWidth = maxLineWidth - minLineWidth
-        let maxSpeed = targetPath.maxSpeed(bounds: bounds)
         
         for point in targetPath.path {
-            norm = normalize(point)
-            normList += ", " + String(describing: norm)
-            flipList += ", " + String(describing: mirror(norm))
-            
             let dx = point.x - prev.x
             let dy = point.y - prev.y
             
@@ -92,11 +76,6 @@ class CutView: UIView {
             prev = point
             lastSpeed = speed
         }
-        
-        print("Norm")
-        print(normList)
-        print("Flip")
-        print(flipList)
     }
 
 }
