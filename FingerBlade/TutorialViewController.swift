@@ -1,21 +1,19 @@
 //
-//  CutViewController.swift
+//  TutorialViewController.swift
 //  FingerBlade
 //
-//  Created by Cormack on 3/2/17.
+//  Created by Cormack on 3/3/17.
 //  Copyright © 2017 the Odin Spire. All rights reserved.
 //
 
 import UIKit
 
-class CutViewController: UIViewController {
+class TutorialViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
     }
 
     override func didReceiveMemoryWarning() {

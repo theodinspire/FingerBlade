@@ -11,26 +11,19 @@ import UIKit
 struct CutDrawPath {
     let start: CGPoint
     let path: [CGPoint]
-    //let size: CGSize
-    //let lefty: Bool
     
     init(start beginning: CGPoint, path steps: [CGPoint], bounds: CGRect) {
         let size = bounds.size
         let lefty = UserDefaults.standard.string(forKey: "Hand") == "Left"
         
-        if lefty {
             //  mirror:point without supplying memory to another variable
-            let flip = { (x: CGFloat) -> CGFloat in 1 - x }
+        let flip = lefty ? { (x: CGFloat) -> CGFloat in 1 - x } : { x in x }
             
-            start = CGPoint(x: flip(beginning.x) * size.width, y: beginning.y * size.height)
+        start = CGPoint(x: flip(beginning.x) * size.width, y: beginning.y * size.height)
             
-            var tmp = [CGPoint]()
-            for step in steps { tmp.append(CGPoint(x: flip(step.x) * size.width, y: step.y * size.height)) }
-            path = tmp
-        } else {
-            start = beginning
-            path = steps
-        }
+        var tmp = [CGPoint]()
+        for step in steps { tmp.append(CGPoint(x: flip(step.x) * size.width, y: step.y * size.height)) }
+        path = tmp
     }
     
     init(path steps: [CGPoint], bounds: CGRect) {

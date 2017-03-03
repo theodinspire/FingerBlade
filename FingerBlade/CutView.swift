@@ -9,12 +9,12 @@
 import UIKit
 
 class CutView: UIView {
-    var cut: CutLine = .punCav
+    var cut: CutLine = .fendManTut
     
     var minLineWidth: CGFloat = 5 // Cannot be zero
     var maxLineWidth: CGFloat = 15
     
-    var targetColor = UIColor.black
+    var targetColor = UIColor.darkGray
 
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

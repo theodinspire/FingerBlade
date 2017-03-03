@@ -150,7 +150,7 @@
                                 <rect key="frame" x="156.5" y="617" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
-                                    <segue destination="14l-ei-1f0" kind="showDetail" id="idW-fp-86X"/>
+                                    <segue destination="N7q-ix-3NW" kind="showDetail" id="hJL-i3-dZC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -181,6 +181,24 @@
             </objects>
             <point key="canvasLocation" x="1605.5999999999999" y="35.532233883058474"/>
         </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="Syz-DK-lVU">
+            <objects>
+                <viewController id="N7q-ix-3NW" customClass="TutorialViewController" customModule="FingerBlade" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yIU-bw-pIu"/>
+                        <viewControllerLayoutGuide type="bottom" id="uLX-FO-xTb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CGQ-ng-iKp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4oK-eB-6Lm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2375" y="36"/>
+        </scene>
         <!--Cut View Controller-->
         <scene sceneID="pd6-es-MsY">
             <objects>
@@ -192,28 +210,12 @@
                     <view key="view" contentMode="scaleToFill" id="drG-Hg-QYn" customClass="CutView" customModule="FingerBlade" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5l-ax-nM5">
-                                <rect key="frame" x="24" y="28" width="327" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="y5l-ax-nM5" secondAttribute="trailing" constant="8" id="gYb-K8-SBy"/>
-                            <constraint firstItem="y5l-ax-nM5" firstAttribute="top" secondItem="GzR-EC-JQy" secondAttribute="bottom" constant="8" id="oyt-aw-TYT"/>
-                            <constraint firstItem="y5l-ax-nM5" firstAttribute="leading" secondItem="drG-Hg-QYn" secondAttribute="leadingMargin" constant="8" id="uFc-WE-5JE"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="label" destination="y5l-ax-nM5" id="UMI-Vh-M6u"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdf-QW-EFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2519" y="36"/>
+            <point key="canvasLocation" x="3097" y="36"/>
         </scene>
     </scenes>
 </document>
