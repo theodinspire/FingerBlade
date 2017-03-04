@@ -10,10 +10,7 @@ import UIKit
 
 class TutorialViewController: UIViewController {
     let lefty = UserDefaults.standard.string(forKey: "Hand") == "Left"
-    let cut: CutLine = //.fendManTut
-        .punCav
-    
-    var cutPath: CutDrawPath?
+    let cut: CutLine = .fendManTut
     var pathGenerator: CutPathGenerator!
     
     var genPath: UIBezierPath?
@@ -47,13 +44,10 @@ class TutorialViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let diaHalf = dotDiameter / 2
         
-        cutPath = CutDrawPath.getExemplar(cut: cut, bounds: view.bounds)
-        
         pathGenerator = CutPathGenerator(ofSize: view!.bounds.size)
         genPath = pathGenerator.path(for: cut)
         
-        let start = //cutPath?.start ?? CGPoint(x: 100, y: 100)
-            pathGenerator.start(for: cut)
+        let start = pathGenerator.start(for: cut)
         
         dotView = DotView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
         dotView.addGestureRecognizer(tap)
