@@ -15,6 +15,7 @@
 		A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */; };
 		A069B2741E6A46380027941C /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069B2731E6A46380027941C /* DotView.swift */; };
 		A069B2761E6A85650027941C /* CutPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069B2751E6A85650027941C /* CutPathGenerator.swift */; };
+		A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */; };
 		A07691741E4C0F76004DF141 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A07691731E4C0F76004DF141 /* Keys.plist */; };
 		A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866BB1E3C398D009E54F6 /* AppDelegate.swift */; };
 		A07866BE1E3C398D009E54F6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866BD1E3C398D009E54F6 /* WelcomeViewController.swift */; };
@@ -52,6 +53,7 @@
 		A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFileHandler.swift; sourceTree = "<group>"; };
 		A069B2731E6A46380027941C /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		A069B2751E6A85650027941C /* CutPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutPathGenerator.swift; sourceTree = "<group>"; };
+		A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationGenerator.swift; sourceTree = "<group>"; };
 		A07691731E4C0F76004DF141 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A07866B81E3C398D009E54F6 /* FingerBlade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerBlade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A07866BB1E3C398D009E54F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
 				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
 				A0FE14261E691DF400CF6A3B /* Global.swift */,
+				A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */,
 				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
 				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,
+				A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
 				A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */,
 				A069B2741E6A46380027941C /* DotView.swift in Sources */,

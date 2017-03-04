@@ -18,7 +18,7 @@ class TutorialViewController: UIViewController {
     let dotDiameter: CGFloat = 40
     let smallDotRatio: CGFloat = 0.75
 
-    var dotView: DotView!
+    var dotView: UIView!
     var tap: UITapGestureRecognizer!
     var swipe: UITapSwipeGestureRecognizer!
     var tapSwipe: UITapSwipeGestureRecognizer!
@@ -42,44 +42,35 @@ class TutorialViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let diaHalf = dotDiameter / 2
-        
+        //  Path generation
         pathGenerator = CutPathGenerator(ofSize: view!.bounds.size)
         genPath = pathGenerator.path(for: cut)
         
+        //  Animation set up
+        let aniGen = AnimationGenerator(withPathGenerator: pathGenerator)
+        aniGen.dotSize = dotDiameter
+        
+        //  DotView Location set up
+        let diaHalf = dotDiameter / 2
         let start = pathGenerator.start(for: cut)
         
-        dotView = DotView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
+        dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
         dotView.addGestureRecognizer(tap)
+        dotView.layer.addSublayer(aniGen.tapAnimation())
+        
         view.addSubview(dotView)
-        dotView.bounds = CGRect(x: dotDiameter * 0.125, y: dotDiameter * 0.125, width: dotDiameter * 0.75, height: dotDiameter * 0.75)
-        UIView.animate(withDuration: 0.75,
-                       delay: 0,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 0.5,
-                       options: [.beginFromCurrentState, .autoreverse, .repeat, .curveEaseInOut, .allowUserInteraction],
-                       animations: { self.dotView.bounds = CGRect(x: 0, y: 0, width: self.dotDiameter, height: self.dotDiameter) },
-                       completion: nil)
     }
     
     func tapped(_ sender: UITapGestureRecognizer?) {
-        dotView.layer.removeAllAnimations()
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.curveEaseInOut, .beginFromCurrentState],
-                       animations: { self.dotView.bounds = CGRect(x: self.dotDiameter * 0.5, y: self.dotDiameter * 0.5, width: 0, height: 0) },
-                       completion: { complete in self.dotView.isHidden = complete })
+        //  Remove gesture
         dotView.removeGestureRecognizer(tap)
         
+        //  Set up stroke
         //  Draw the exemplar stroke
-        let bezierPath = //cutPath!.bezierPath
-            genPath
+        let bezierPath = genPath
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath?.cgPath
         view.layer.addSublayer(shapeLayer)
-        
-        //shapeLayer.strokeStart = 0
-        //shapeLayer.strokeEnd = 0
         
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = UIColor.darkGray.cgColor
@@ -117,9 +108,19 @@ class TutorialViewController: UIViewController {
             return group
         }()
         
+        
+        
+        //  Animate
+        dotView.layer.removeAllAnimations()
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: [.curveEaseInOut, .beginFromCurrentState],
+                       animations: { self.dotView.bounds = CGRect(x: self.dotDiameter * 0.25, y: self.dotDiameter * 0.25, width: self.dotDiameter * 0.5, height: self.dotDiameter * 0.5) },
+                       completion: { complete in
+                        self.dotView.isHidden = complete })
+        
         shapeLayer.add(strokeEndAnimation, forKey: "strokeEnd")
         shapeLayer.add(strokeStartAnimation, forKey: "strokeStart")
-        
         
     }
 
