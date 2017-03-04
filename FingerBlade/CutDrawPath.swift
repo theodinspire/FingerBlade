@@ -87,6 +87,12 @@ struct CutDrawPath {
     
     var deltaSpeed: CGFloat { return maxSpeed - minSpeed }
     
+    var bezierPath: UIBezierPath {
+        let bezPath = UIBezierPath()
+        bezPath.move(to: start)
+        for point in path { bezPath.addLine(to: point) }
+        return bezPath
+    }
     
     //  Static functions
     static func getExemplar(cut: CutLine, bounds: CGRect) -> CutDrawPath {
