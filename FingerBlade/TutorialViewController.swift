@@ -14,9 +14,9 @@ class TutorialViewController: UIViewController {
     var pathGenerator: CutPathGenerator!
     
     var genPath: UIBezierPath?
+    var aniGen: AnimationGenerator!
     
     let dotDiameter: CGFloat = 40
-    let smallDotRatio: CGFloat = 0.75
 
     var dotView: UIView!
     var tap: UITapGestureRecognizer!
@@ -30,7 +30,7 @@ class TutorialViewController: UIViewController {
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
         
-        swipe = UITapSwipeGestureRecognizer(target: self, action: nil)
+        swipe = UITapSwipeGestureRecognizer(target: self, action: #selector(swiped))
         swipe.numberOfTapsRequired = 0
         swipe.numberOfTapTouchesRequired = 1
         swipe.numberOfSwipeTouchesRequired = 1
@@ -47,14 +47,39 @@ class TutorialViewController: UIViewController {
         genPath = pathGenerator.path(for: cut)
         
         //  Animation set up
-        let aniGen = AnimationGenerator(withPathGenerator: pathGenerator)
+        aniGen = AnimationGenerator(withPathGenerator: pathGenerator)
         aniGen.dotSize = dotDiameter
         
         //  DotView Location set up
+        buildDotView()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    //  Tutorial methods
+    func buildDotView() {
         let diaHalf = dotDiameter / 2
         let start = pathGenerator.start(for: cut)
         
-        dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
+        if dotView == nil {
+            dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
+        } else {
+            dotView.isHidden = false
+        }
+        
         dotView.addGestureRecognizer(tap)
         dotView.layer.addSublayer(aniGen.tapAnimation())
         
@@ -65,79 +90,27 @@ class TutorialViewController: UIViewController {
         //  Remove gesture
         dotView.removeGestureRecognizer(tap)
         
-        //  Set up stroke
-        //  Draw the exemplar stroke
-        let bezierPath = genPath
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = bezierPath?.cgPath
-        view.layer.addSublayer(shapeLayer)
-        
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.strokeColor = UIColor.darkGray.cgColor
-        shapeLayer.lineCap = kCALineCapRound
-        shapeLayer.lineWidth = 20
-        
-        let strokeEndAnimation: CAAnimation = {
-            let animation = CABasicAnimation(keyPath: "strokeEnd")
-            animation.fromValue = 0
-            animation.toValue = 1
-            animation.duration = 2
-            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            
-            let group = CAAnimationGroup()
-            group.duration = 3
-            group.repeatCount = .greatestFiniteMagnitude
-            group.animations = [animation]
-            
-            return group
-        }()
-        
-        let strokeStartAnimation: CAAnimation = {
-            let animation = CABasicAnimation(keyPath: "strokeStart")
-            animation.beginTime = 1
-            animation.fromValue = 0
-            animation.toValue = 1
-            animation.duration = 2
-            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            
-            let group = CAAnimationGroup()
-            group.duration = 3
-            group.repeatCount = .greatestFiniteMagnitude
-            group.animations = [animation]
-            
-            return group
-        }()
-        
-        
-        
         //  Animate
-        dotView.layer.removeAllAnimations()
+        if let sublayers = dotView.layer.sublayers {
+            for sub in sublayers { sub.removeAllAnimations() }
+        }
+        
         UIView.animate(withDuration: 0.5,
-                       delay: 0,
+                       delay: 0.25, // Pause a little for moment
                        options: [.curveEaseInOut, .beginFromCurrentState],
                        animations: { self.dotView.bounds = CGRect(x: self.dotDiameter * 0.25, y: self.dotDiameter * 0.25, width: self.dotDiameter * 0.5, height: self.dotDiameter * 0.5) },
                        completion: { complete in
-                        self.dotView.isHidden = complete })
-        
-        shapeLayer.add(strokeEndAnimation, forKey: "strokeEnd")
-        shapeLayer.add(strokeStartAnimation, forKey: "strokeStart")
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+                        self.view.addGestureRecognizer(self.swipe)
+                        self.view.layer.addSublayer(self.aniGen.swipeAnimation(forCut: self.cut))
+                        self.dotView.isHidden = complete
+                       })
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func swiped(_ sender: UITapSwipeGestureRecognizer) {
+        view.removeGestureRecognizer(swipe)
+        view.layer.removeAllAnimations()
+        view.layer.sublayers?.forEach { sublayer in sublayer.removeFromSuperlayer() }
+        buildDotView()
     }
-    */
 
 }

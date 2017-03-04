@@ -13,7 +13,6 @@
 		A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F351E4CFB0600DA581A /* AWSRegionType.swift */; };
 		A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F371E4D00DA00DA581A /* KeyRing.swift */; };
 		A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */; };
-		A069B2741E6A46380027941C /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069B2731E6A46380027941C /* DotView.swift */; };
 		A069B2761E6A85650027941C /* CutPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069B2751E6A85650027941C /* CutPathGenerator.swift */; };
 		A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */; };
 		A07691741E4C0F76004DF141 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A07691731E4C0F76004DF141 /* Keys.plist */; };
@@ -51,7 +50,6 @@
 		A0199F351E4CFB0600DA581A /* AWSRegionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSRegionType.swift; sourceTree = "<group>"; };
 		A0199F371E4D00DA00DA581A /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
 		A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFileHandler.swift; sourceTree = "<group>"; };
-		A069B2731E6A46380027941C /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		A069B2751E6A85650027941C /* CutPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutPathGenerator.swift; sourceTree = "<group>"; };
 		A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationGenerator.swift; sourceTree = "<group>"; };
 		A07691731E4C0F76004DF141 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				A007A1C71E688868009D2395 /* CutView.swift */,
-				A069B2731E6A46380027941C /* DotView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -392,7 +389,6 @@
 				A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
 				A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */,
-				A069B2741E6A46380027941C /* DotView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
