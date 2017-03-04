@@ -21,19 +21,15 @@ class AnimationGenerator {
     var strokeColor = UIColor.darkGray.cgColor
     var fillColor = UIColor.darkGray.cgColor
     
-    private var tapShapeLayer = CAShapeLayer()
-    var tapEnded = false
-    
     init(withPathGenerator generator: CutPathGenerator) {
         pathGenerator = generator
     }
     
     //  Animation for a solo tap
     func tapAnimation() -> CAShapeLayer {
-        tapEnded = false
-        tapShapeLayer = ShapeLayer()
-        tapShapeLayer.fillColor = fillColor
-        tapShapeLayer.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: dotSize / 2, height: dotSize / 2)).cgPath
+        let shapeLayer = ShapeLayer()
+        shapeLayer.fillColor = fillColor
+        shapeLayer.path = UIBezierPath(ovalIn: CGRect(x: dotSize / 4, y: dotSize / 4, width: dotSize / 2, height: dotSize / 2)).cgPath
         //shapeLayer.path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: dotSize / 2, height: dotSize / 2)).cgPath
         
         let scale = CASpringAnimation(keyPath: "transform.scale")
@@ -46,44 +42,18 @@ class AnimationGenerator {
         scale.mass = 2
         
         let position = CASpringAnimation(keyPath: "position")
-        position.fromValue = [dotSize / 4, dotSize / 4]
-        position.toValue = [0, 0]
+        position.fromValue = [0, 0]
+        position.toValue = [-dotSize / 2, -dotSize / 2] //  It's the entire CAShapeLayer that's transforming
         position.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         position.duration = self.dotDuration / 2
         position.repeatCount = .greatestFiniteMagnitude
         position.autoreverses = true
         position.mass = 2
         
-        tapShapeLayer.add(scale, forKey: "transform.scale")
-        tapShapeLayer.add(position, forKey: "position")
+        shapeLayer.add(scale, forKey: "transform.scale")
+        shapeLayer.add(position, forKey: "position")
         
-        return tapShapeLayer
-    }
-    
-    func endTapAnimation() {
-        CATransaction.begin()
-        
-        let scale = CABasicAnimation(keyPath: "transform.scale")
-        scale.fromValue = 1
-        scale.toValue = 1
-        scale.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        scale.duration = 0.75
-        scale.repeatCount = 1
-        scale.autoreverses = false
-        
-        let position = CASpringAnimation(keyPath: "position")
-        position.fromValue = [dotSize / 4, dotSize / 4]
-        position.toValue = [dotSize / 4, dotSize / 4]
-        position.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        position.duration = 0.75
-        position.byValue = 1
-        scale.autoreverses = false
-        
-        tapShapeLayer.add(scale, forKey: "transform.scale")
-        tapShapeLayer.add(position, forKey: "position")
-        
-        CATransaction.setCompletionBlock { self.tapEnded = true }
-        CATransaction.commit()
+        return shapeLayer
     }
     
     func swipeAnimation(forCut cut: CutLine) -> CAShapeLayer {
@@ -126,6 +96,124 @@ class AnimationGenerator {
         shapeLayer.add(strokeStartAnimation, forKey: "strokeStart")
         
         return shapeLayer
+    }
+    
+    func tapSwipeAnimation(forCut cut: CutLine) -> (CAShapeLayer, CAShapeLayer) {
+        let swipeLayer = ShapeLayer()
+        let tapLayer = ShapeLayer()
+        
+        //  Tap
+        let start = pathGenerator.start(for: cut)
+        tapLayer.fillColor = fillColor
+        //tapLayer.path = UIBezierPath(ovalIn: CGRect(x: start.x - dotSize / 4, y: start.y - dotSize / 4, width: dotSize / 2, height: dotSize / 2)).cgPath
+        
+        let scale: CAAnimation = {
+            let animation = CASpringAnimation(keyPath: "transform.scale")
+            animation.fromValue = 1
+            animation.toValue = 2
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            animation.duration = self.dotDuration / 2
+            animation.repeatCount = 1
+            animation.autoreverses = true
+            animation.mass = 2
+            
+            let group = CAAnimationGroup()
+            group.duration = self.dotDuration + self.strokeDuration
+            group.repeatCount = .greatestFiniteMagnitude
+            group.animations = [animation]
+         
+            return group
+        }()
+        
+        let position: CAAnimation = {
+            let animation = CASpringAnimation(keyPath: "position")
+            animation.fromValue = [0, 0]
+            animation.toValue = [-start.x, -start.y] //  It's the entire CAShapeLayer that's transforming
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            animation.duration = self.dotDuration / 2
+            animation.repeatCount = 1
+            animation.autoreverses = true
+            animation.mass = 2
+            
+            let group = CAAnimationGroup()
+            group.duration = self.dotDuration + self.strokeDuration
+            group.repeatCount = .greatestFiniteMagnitude
+            group.animations = [animation]
+            
+            return group
+        }()
+        
+        //tapLayer.add(scale, forKey: "transform.scale")
+        //tapLayer.add(position, forKey: "position")
+        
+        //  Swipe
+        let path = pathGenerator.path(for: cut)
+        swipeLayer.path = path.cgPath
+        swipeLayer.lineWidth = lineWeight
+        
+        let lineWidthAnimation: CAAnimation = {
+            let grow = CASpringAnimation(keyPath: "lineWidth")
+            grow.fromValue = self.lineWeight
+            grow.toValue = self.dotSize
+            grow.duration = self.dotDuration / 2
+            grow.autoreverses = true
+            grow.mass = 2
+            grow.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            
+            let group = CAAnimationGroup()
+            group.duration = self.dotDuration + self.strokeDuration
+            group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            group.repeatCount = .greatestFiniteMagnitude
+            group.animations = [grow]
+            
+            return group
+        }()
+        
+        let strokeEndAnimation: CAAnimation = {
+            let dot = CABasicAnimation(keyPath: "strokeEnd")
+            dot.fromValue = CGFloat.leastNonzeroMagnitude
+            dot.toValue = CGFloat.leastNonzeroMagnitude
+            dot.duration = self.dotDuration
+            
+            let stroke = CABasicAnimation(keyPath: "strokeEnd")
+            stroke.fromValue = CGFloat.leastNonzeroMagnitude
+            stroke.toValue = 1
+            stroke.beginTime = self.dotDuration
+            stroke.duration = self.strokeDuration - self.strokeChaseDelay
+            stroke.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            
+            let group = CAAnimationGroup()
+            group.duration = self.dotDuration + self.strokeDuration
+            group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            group.repeatCount = .greatestFiniteMagnitude
+            group.animations = [dot, stroke]
+            
+            return group
+        }()
+        
+        let strokeStartAnimation: CAAnimation = {
+            let animation = CABasicAnimation(keyPath: "strokeStart")
+            animation.fromValue = 0
+            animation.toValue = 1
+            animation.beginTime = self.strokeChaseDelay + self.dotDuration
+            animation.duration = self.strokeDuration - self.strokeChaseDelay
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            
+            let group = CAAnimationGroup()
+            group.duration = self.dotDuration + self.strokeDuration
+            group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            group.repeatCount = .greatestFiniteMagnitude
+            group.animations = [animation]
+            
+            return group
+        }()
+        
+        swipeLayer.add(lineWidthAnimation, forKey: "lineWidth")
+        swipeLayer.add(strokeEndAnimation, forKey: "strokeEnd")
+        swipeLayer.add(strokeStartAnimation, forKey: "strokeStart")
+        
+        //  Combine
+        return (tapLayer, swipeLayer)
     }
     
     private func ShapeLayer() -> CAShapeLayer {

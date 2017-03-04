@@ -23,6 +23,9 @@ class TutorialViewController: UIViewController {
     var swipe: UITapSwipeGestureRecognizer!
     var tapSwipe: UITapSwipeGestureRecognizer!
     
+    var tapMade = false
+    var swipeMade = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -35,7 +38,7 @@ class TutorialViewController: UIViewController {
         swipe.numberOfTapTouchesRequired = 1
         swipe.numberOfSwipeTouchesRequired = 1
         
-        tapSwipe = UITapSwipeGestureRecognizer(target: self, action: nil)
+        tapSwipe = UITapSwipeGestureRecognizer(target: self, action: #selector(tapSwiped))
         tapSwipe.numberOfTapsRequired = 1
         tapSwipe.numberOfTapTouchesRequired = 1
         tapSwipe.numberOfSwipeTouchesRequired = 1
@@ -74,11 +77,9 @@ class TutorialViewController: UIViewController {
         let diaHalf = dotDiameter / 2
         let start = pathGenerator.start(for: cut)
         
-        if dotView == nil {
-            dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
-        } else {
-            dotView.isHidden = false
-        }
+        dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
+        
+        //dotView.backgroundColor = UIColor.blue
         
         dotView.addGestureRecognizer(tap)
         dotView.layer.addSublayer(aniGen.tapAnimation())
@@ -87,30 +88,41 @@ class TutorialViewController: UIViewController {
     }
     
     func tapped(_ sender: UITapGestureRecognizer?) {
-        //  Remove gesture
-        dotView.removeGestureRecognizer(tap)
-        
-        //  Animate
-        if let sublayers = dotView.layer.sublayers {
-            for sub in sublayers { sub.removeAllAnimations() }
+        if !tapMade {
+            tapMade = true
+            dotView.layer.removeAllAnimations()
+            //dotView.removeGestureRecognizer(tap)
+            
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.25, // Pause a little for moment
+                           options: [.curveEaseInOut, .beginFromCurrentState],
+                           animations: { self.dotView.bounds = CGRect(x: self.dotDiameter * 0.25, y: self.dotDiameter * 0.25, width: self.dotDiameter * 0.5, height: self.dotDiameter * 0.5) },
+                           completion: { complete in
+                            self.view.addGestureRecognizer(self.swipe)
+                            self.view.layer.addSublayer(self.aniGen.swipeAnimation(forCut: self.cut))
+                            self.dotView.isHidden = complete
+                            //self.dotView.removeFromSuperview()
+            })
         }
-        
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.25, // Pause a little for moment
-                       options: [.curveEaseInOut, .beginFromCurrentState],
-                       animations: { self.dotView.bounds = CGRect(x: self.dotDiameter * 0.25, y: self.dotDiameter * 0.25, width: self.dotDiameter * 0.5, height: self.dotDiameter * 0.5) },
-                       completion: { complete in
-                        self.view.addGestureRecognizer(self.swipe)
-                        self.view.layer.addSublayer(self.aniGen.swipeAnimation(forCut: self.cut))
-                        self.dotView.isHidden = complete
-                       })
     }
     
     func swiped(_ sender: UITapSwipeGestureRecognizer) {
-        view.removeGestureRecognizer(swipe)
-        view.layer.removeAllAnimations()
-        view.layer.sublayers?.forEach { sublayer in sublayer.removeFromSuperlayer() }
-        buildDotView()
+        if !swipeMade {
+            swipeMade = true
+            view.removeGestureRecognizer(swipe)
+            view.layer.removeAllAnimations()
+            view.layer.sublayers?.forEach { sublayer in sublayer.removeFromSuperlayer() }
+            
+            let (tapLayer, swipeLayer) = aniGen.tapSwipeAnimation(forCut: cut)
+            view.layer.addSublayer(tapLayer)
+            view.layer.addSublayer(swipeLayer)
+        }
+    }
+    
+    func  tapSwiped(_ sender: UITapSwipeGestureRecognizer) {
+        //view.removeGestureRecognizer(tapSwipe)
+        //view.layer.removeAllAnimations()
+        
     }
 
 }
