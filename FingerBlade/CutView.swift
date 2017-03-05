@@ -25,7 +25,7 @@ class CutView: UIView {
         
         // Drawing code
         pathGenerator = CutPathGenerator(ofSize: bounds.size)
-        let targetPath = pathGenerator.path(for: cut)
+        let _ = pathGenerator.path(for: cut)
         
         targetColor.set()
         

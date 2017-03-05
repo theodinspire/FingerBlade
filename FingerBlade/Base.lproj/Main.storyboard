@@ -192,8 +192,24 @@
                     <view key="view" contentMode="scaleToFill" id="CGQ-ng-iKp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhh-22-0gL">
+                                <rect key="frame" x="156" y="617" width="62" height="30"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <segue destination="14l-ei-1f0" kind="showDetail" id="f8h-i6-MtC"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mhh-22-0gL" firstAttribute="centerX" secondItem="CGQ-ng-iKp" secondAttribute="centerX" id="1KE-Rl-gs5"/>
+                            <constraint firstItem="uLX-FO-xTb" firstAttribute="top" secondItem="mhh-22-0gL" secondAttribute="bottom" constant="20" id="4E6-TY-awQ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contButton" destination="mhh-22-0gL" id="9WS-xs-k6O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oK-eB-6Lm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

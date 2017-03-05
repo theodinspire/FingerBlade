@@ -9,6 +9,8 @@
 import UIKit
 
 class TutorialViewController: UIViewController {
+    @IBOutlet weak var contButton: UIButton!
+    
     let lefty = UserDefaults.standard.string(forKey: "Hand") == "Left"
     let cut: CutLine = .fendManTut
     var pathGenerator: CutPathGenerator!
@@ -42,6 +44,8 @@ class TutorialViewController: UIViewController {
         tapSwipe.numberOfTapsRequired = 1
         tapSwipe.numberOfTapTouchesRequired = 1
         tapSwipe.numberOfSwipeTouchesRequired = 1
+        
+        contButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,12 +114,19 @@ class TutorialViewController: UIViewController {
         if !swipeMade {
             swipeMade = true
             view.removeGestureRecognizer(swipe)
-            view.layer.removeAllAnimations()
-            view.layer.sublayers?.forEach { sublayer in sublayer.removeFromSuperlayer() }
             
-            let (tapLayer, swipeLayer) = aniGen.tapSwipeAnimation(forCut: cut)
-            view.layer.addSublayer(tapLayer)
-            view.layer.addSublayer(swipeLayer)
+            CATransaction.begin()
+            for layer in view.layer.sublayers! {
+                if let shapeLayer = layer as? CAShapeLayer {
+                    shapeLayer.removeAllAnimations()
+                    shapeLayer.path = UIBezierPath().cgPath
+                    shapeLayer.removeFromSuperlayer()
+                }
+            }
+            CATransaction.commit()
+            
+            view.layer.addSublayer(aniGen.tapSwipeAnimation(forCut: cut))
+            view.addGestureRecognizer(tapSwipe)
         }
     }
     
