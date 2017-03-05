@@ -17,6 +17,7 @@ class TutorialViewController: UIViewController {
     
     var genPath: UIBezierPath?
     var aniGen: AnimationGenerator!
+    var shapeLayer: CAShapeLayer?
     
     let dotDiameter: CGFloat = 40
 
@@ -51,14 +52,25 @@ class TutorialViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //  Path generation
         pathGenerator = CutPathGenerator(ofSize: view!.bounds.size)
-        genPath = pathGenerator.path(for: cut)
         
         //  Animation set up
         aniGen = AnimationGenerator(withPathGenerator: pathGenerator)
         aniGen.dotSize = dotDiameter
         
-        //  DotView Location set up
-        buildDotView()
+        let diaHalf = dotDiameter / 2
+        let start = pathGenerator.start(for: cut)
+        
+        dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
+        dotView.backgroundColor = UIColor.clear
+        
+        //dotView.backgroundColor = UIColor.blue
+        
+        dotView.addGestureRecognizer(tap)
+        
+        shapeLayer = aniGen.tapAnimation(forCut: cut)
+        view.layer.addSublayer(shapeLayer!)
+        
+        view.addSubview(dotView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,64 +88,54 @@ class TutorialViewController: UIViewController {
      }
      */
     
-    //  Tutorial methods
-    func buildDotView() {
-        let diaHalf = dotDiameter / 2
-        let start = pathGenerator.start(for: cut)
-        
-        dotView = UIView(frame: CGRect(x: start.x - diaHalf, y: start.y - diaHalf, width: dotDiameter, height: dotDiameter))
-        
-        //dotView.backgroundColor = UIColor.blue
-        
-        dotView.addGestureRecognizer(tap)
-        dotView.layer.addSublayer(aniGen.tapAnimation())
-        
-        view.addSubview(dotView)
-    }
-    
+    //  Tutorial Methods
     func tapped(_ sender: UITapGestureRecognizer?) {
-        if !tapMade {
-            tapMade = true
-            dotView.layer.removeAllAnimations()
-            //dotView.removeGestureRecognizer(tap)
-            
-            UIView.animate(withDuration: 0.5,
-                           delay: 0.25, // Pause a little for moment
-                           options: [.curveEaseInOut, .beginFromCurrentState],
-                           animations: { self.dotView.bounds = CGRect(x: self.dotDiameter * 0.25, y: self.dotDiameter * 0.25, width: self.dotDiameter * 0.5, height: self.dotDiameter * 0.5) },
-                           completion: { complete in
-                            self.view.addGestureRecognizer(self.swipe)
-                            self.view.layer.addSublayer(self.aniGen.swipeAnimation(forCut: self.cut))
-                            self.dotView.isHidden = complete
-                            //self.dotView.removeFromSuperview()
-            })
-        }
+        CATransaction.begin()
+        
+        dotView.removeGestureRecognizer(tap)
+        dotView.removeFromSuperview()
+        
+        shapeLayer?.removeAllAnimations()
+        shapeLayer?.removeFromSuperlayer()
+        
+        shapeLayer = aniGen.swipeAnimation(forCut: cut)
+        view.layer.addSublayer(shapeLayer!)
+        
+        view.addGestureRecognizer(swipe)
+        
+        CATransaction.commit()
     }
     
     func swiped(_ sender: UITapSwipeGestureRecognizer) {
-        if !swipeMade {
-            swipeMade = true
-            view.removeGestureRecognizer(swipe)
-            
-            CATransaction.begin()
-            for layer in view.layer.sublayers! {
-                if let shapeLayer = layer as? CAShapeLayer {
-                    shapeLayer.removeAllAnimations()
-                    shapeLayer.path = UIBezierPath().cgPath
-                    shapeLayer.removeFromSuperlayer()
-                }
-            }
-            CATransaction.commit()
-            
-            view.layer.addSublayer(aniGen.tapSwipeAnimation(forCut: cut))
-            view.addGestureRecognizer(tapSwipe)
-        }
+        CATransaction.begin()
+        
+        view.removeGestureRecognizer(swipe)
+        
+        shapeLayer?.removeAllAnimations()
+        shapeLayer?.removeFromSuperlayer()
+        
+        shapeLayer = aniGen.tapSwipeAnimation(forCut: cut)
+        view.layer.addSublayer(shapeLayer!)
+        
+        view.addGestureRecognizer(tapSwipe)
+        
+        CATransaction.commit()
     }
     
     func  tapSwiped(_ sender: UITapSwipeGestureRecognizer) {
-        //view.removeGestureRecognizer(tapSwipe)
-        //view.layer.removeAllAnimations()
+        view.removeGestureRecognizer(tapSwipe)
         
+        CATransaction.begin()
+        for layer in view.layer.sublayers! {
+            if let shapeLayer = layer as? CAShapeLayer {
+                shapeLayer.removeAllAnimations()
+                shapeLayer.path = UIBezierPath().cgPath
+                shapeLayer.removeFromSuperlayer()
+            }
+        }
+        CATransaction.commit()
+        
+        contButton.isHidden = false
     }
 
 }
