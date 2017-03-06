@@ -16,9 +16,11 @@ class CutViewController: UIViewController {
     var cutStore: SampleStore!
     var shuffled = false
     var counter = 1
-    var cutsToMake = 3
+    var cutsToMake = 10
     var cut: CutLine?
     var cutIterator: IndexingIterator<[CutLine]>?
+    
+    var cutList: [CutLine]?
     
     var aniGen: AnimationGenerator!
     var aniLayer: CAShapeLayer!
@@ -38,6 +40,8 @@ class CutViewController: UIViewController {
         //countLabel.alpha = 0
         
         view.addGestureRecognizer(recognizer)
+        
+        cutIterator = cutList?.makeIterator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
