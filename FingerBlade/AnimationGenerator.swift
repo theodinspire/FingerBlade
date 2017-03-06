@@ -15,9 +15,9 @@ class AnimationGenerator {
     var dotSize: CGFloat = 40
     var lineWeight: CGFloat = 20
     
-    var dotDuration: CFTimeInterval = 1.5
-    var strokeDuration: CFTimeInterval = 3
-    var strokeChaseDelay: CFTimeInterval = 1
+    var dotDuration: CFTimeInterval = 0.75
+    var strokeDuration: CFTimeInterval = 1.33
+    var strokeChaseDelay: CFTimeInterval = 0.67
     
     var strokeColor = UIColor.darkGray.cgColor
     
@@ -70,14 +70,94 @@ class AnimationGenerator {
         return layer
     }
     
+    func wordSwipeAnimation(forCut cut: CutLine, long: Bool = false) -> CAAnimation {
+        let pathStart = swipeWordStartPoint(forCut: cut)
+        
+        let pathStartPlus: CGPoint = {
+            var point = pathStart
+            point.x += CGFloat.leastNonzeroMagnitude
+            point.y += CGFloat.leastNonzeroMagnitude
+            return point
+        }()
+        
+        let pathMid = swipeWordRestPoint(forCut: cut)
+        
+        let pathMidPlus: CGPoint = {
+            var point = pathMid
+            point.x += CGFloat.leastNonzeroMagnitude
+            point.y += CGFloat.leastNonzeroMagnitude
+            return point
+        }()
+        
+        let wordBegin = UIBezierPath()
+        wordBegin.move(to: pathStart)
+        wordBegin.addLine(to: pathStartPlus)
+        
+        let wordPath = UIBezierPath()
+        wordPath.move(to: pathStartPlus)
+        wordPath.addLine(to: pathMid)
+        
+        let wordPause = UIBezierPath()
+        wordPause.move(to: pathMid)
+        wordPause.addLine(to: pathMidPlus)
+        
+        let animation: CAAnimation = {
+            let duration = self.strokeDuration - self.strokeChaseDelay
+            
+            let begin = CAKeyframeAnimation(keyPath: "position")
+            begin.path = wordBegin.cgPath
+            begin.duration = long ? self.dotDuration : 0
+            
+            let movement = CAKeyframeAnimation(keyPath: "position")
+            movement.path = wordPath.cgPath
+            movement.beginTime = long ? self.dotDuration : 0
+            movement.duration = duration
+            
+            let pause = CAKeyframeAnimation(keyPath: "position")
+            pause.path = wordPause.cgPath
+            pause.beginTime = duration + ( long ? self.dotDuration : 0 )
+            
+            let group = CAAnimationGroup()
+            group.animations = [begin, movement, pause]
+            group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            group.duration = self.strokeDuration + ( long ? self.dotDuration : 0 )
+            
+            return group
+        }()
+        
+        return animation
+    }
+    
+    func swipeWordStartPoint(forCut cut: CutLine) -> CGPoint {
+        var point = pathGenerator.start(for: cut)
+        if lefty { point.x += dotSize * 1.5
+        } else /* righty */ { point.x -= dotSize * 1.5 }
+        return point
+    }
+    
+    func swipeWordRestPoint(forCut cut: CutLine) -> CGPoint {
+        let pathStart = swipeWordStartPoint(forCut: cut)
+        
+        let pathEnd: CGPoint = {
+            var point = pathGenerator.end(for: cut)
+            if lefty { point.x += dotSize * 1.5
+            } else /* righty */ { point.x -= dotSize * 1.5 }
+            return point
+        }()
+        
+        var point = CGPoint()
+        point.x = (pathStart.x + pathEnd.x) / 2
+        point.y = (pathStart.y + pathEnd.y) / 2
+        return point
+    }
+    
     private func pointAnimation(long: Bool = false) -> CAAnimation {
-        let grow = CASpringAnimation(keyPath: "lineWidth")
+        let grow = CABasicAnimation(keyPath: "lineWidth")
         grow.fromValue = lineWeight
         grow.toValue = dotSize
         grow.duration = dotDuration / 2
         grow.autoreverses = true
-        grow.mass = 2
-        grow.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        grow.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
         if long {
             let group = CAAnimationGroup()

@@ -105,6 +105,7 @@
 		A007A1C61E68883C009D2395 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */,
 				A007A1C71E688868009D2395 /* CutView.swift */,
 			);
 			name = View;
@@ -116,7 +117,6 @@
 				A0B446EF1E4E55EF006602D4 /* CutLine.swift */,
 				A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */,
 				A0FE14261E691DF400CF6A3B /* Global.swift */,
-				A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";

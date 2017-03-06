@@ -226,8 +226,23 @@
                     <view key="view" contentMode="scaleToFill" id="drG-Hg-QYn" customClass="CutView" customModule="FingerBlade" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT9-so-BT9">
+                                <rect key="frame" x="180.5" y="317" width="13" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GT9-so-BT9" firstAttribute="centerY" secondItem="drG-Hg-QYn" secondAttribute="centerY" id="TAK-AY-ACf"/>
+                            <constraint firstItem="GT9-so-BT9" firstAttribute="centerX" secondItem="drG-Hg-QYn" secondAttribute="centerX" id="jDB-R5-w8M"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="countLabel" destination="GT9-so-BT9" id="mXC-z5-rIu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdf-QW-EFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
