@@ -33,3 +33,8 @@ func standardDateFormatter() -> DateFormatter {
     
     return format
 }
+
+//  Flip a point's X coordinate around 0.5
+func mirror(point original: CGPoint) -> CGPoint {
+    return CGPoint(x: 1 - original.x, y: original.y)
+}

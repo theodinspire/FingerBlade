@@ -21,7 +21,7 @@ class DataFileHandler {
     var sent = false
     
     convenience init() {
-        self.init(filename: standardDateFormatter().string(from: Date()))
+        self.init(filename: standardDateFormatter().string(from: Date()) + "." + (UIDevice.current.identifierForVendor?.description ?? "Anonymous") + ".txt")
     }
     
     init(filename: String) {
@@ -30,6 +30,7 @@ class DataFileHandler {
         header += (UIDevice.current.identifierForVendor?.description ??
             "Unidentified device") + "\n"
         header += UIDevice.current.model + "\n"
+        header += "Device screen size: \(UIScreen.main.fixedCoordinateSpace.bounds.size)\n"
         if let email = UserDefaults.standard.string(forKey: "Email") {
             header += email + "\n"
         }
@@ -39,7 +40,7 @@ class DataFileHandler {
         header += Date().description + "\n\n"
     }
     
-    func addSample(store: SampleStore) {
+    private func addSample(store: SampleStore) {
         body += store.getVerboseString()
     }
     
