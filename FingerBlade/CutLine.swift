@@ -9,26 +9,26 @@
 import Foundation
 
 enum CutLine: String {
-    case fendManTut = "Fendente Mandritto Tutto"
-    case fendManMez = "Fendente Mandritto Mezzo"
-    case fendRivTut = "Fendente Riverso Tutto"
-    case fendRivMez = "Fendente Riverso Mezzo"
-    case mezMan     = "Mezzano Mandritto"
-    case mezRiv     = "Mezzano Riverso"
-    case sotManTut  = "Sottano Mandritto Tutto"
-    case sotManMez  = "Sottano Mandritto Mezzo"
-    case sotManFal  = "Sottano Mandritto Tutto Falso"
-    case sotRivTut  = "Sottano Riverso Tutto"
-    case sotRivMez  = "Sottano Riverso Mezzo"
-    case sotRivFal  = "Sottano Riverso Falso"
-    case punSot     = "Punta Sottomana"
-    case punSop     = "Punta Sopromana"
-    case punCav     = "Punta Sottomana con Cavazione"
+    case fendManTut = "Full Cut"
+    case fendManMez = "Half Cut"
+    case fendRivTut = "Full Backhand Cut"
+    case fendRivMez = "Half Backhand Cut"
+    case mezMan     = "Lateral Cut"
+    case mezRiv     = "Lateral Backhand Cut"
+    case sotManTut  = "Full True-Edge Rising Cut"
+    case sotManMez  = "Half True-Edge Rising Cut"
+    case sotManFal  = "False-Edge Rising Cut"
+    case sotRivTut  = "Full True-Edge Rising Backhand Cut"
+    case sotRivMez  = "Half True-Edge Rising Backhand Cut"
+    case sotRivFal  = "False-Edge Rising Backhand Cut"
+    case punSot     = "Thrust"
+    case punSop     = "Overhand Thrust"
+    case punCav     = "Thrust with Disengagement"
     
     static var all: [CutLine] {
-        return [.fendManTut, .fendManMez, .fendRivTut,
+        return [.fendManTut, .fendRivTut, .fendManMez,
             .fendRivMez, .mezMan, .mezRiv, .sotManTut,
-            .sotManMez, .sotManFal, .sotRivTut, .sotRivMez,
+            .sotRivTut, .sotManMez, .sotRivMez, .sotManFal,
             .sotRivFal, .punSot, .punSop, .punCav]
     }
 }

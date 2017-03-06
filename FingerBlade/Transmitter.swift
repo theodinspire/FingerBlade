@@ -25,11 +25,14 @@ class Transmitter {
     }
     
     static func upload(data: Data?, named filename: String) {
-        if let data = data {
-            transferUtility.uploadData(data, bucket: KeyRing.bucket!, key: filename, contentType: "text/plain", expression: expression, completionHandler: completionHandler)
+        if KeyRing.setup {
+            if let data = data {
+                transferUtility.uploadData(data, bucket: KeyRing.bucket!, key: filename, contentType: "text/plain", expression: expression, completionHandler: completionHandler)
+            } else {
+                print("Data not valid")
+            }
         } else {
-            print("Data not valid")
+            print("The AWS connection has not been established. Transmission aborted")
         }
     }
-    
 }

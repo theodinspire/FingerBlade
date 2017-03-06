@@ -10,25 +10,46 @@ import UIKit
 import AWSS3
 
 class DataFileHandler {
+    static let dateFormat = standardDateFormatter()
+    
     var fileManager = FileManager()
     var tmpDirectory = NSTemporaryDirectory()
     let filename: String
     
     var header = ""
+    var body = ""
     var sent = false
+    
+    convenience init() {
+        self.init(filename: standardDateFormatter().string(from: Date()) + "." + (UIDevice.current.identifierForVendor?.description ?? "Anonymous") + ".txt")
+    }
     
     init(filename: String) {
         self.filename = filename
         
         header += (UIDevice.current.identifierForVendor?.description ??
             "Unidentified device") + "\n"
+        header += UIDevice.current.model + "\n"
+        header += "Device screen size: \(UIScreen.main.fixedCoordinateSpace.bounds.size)\n"
+        if let email = UserDefaults.standard.string(forKey: "Email") {
+            header += email + "\n"
+        }
+        if let hand = UserDefaults.standard.string(forKey: "Hand") {
+            header += "Sword-hand: " + hand + "\n"
+        }
         header += Date().description + "\n\n"
     }
     
+    private func addSample(store: SampleStore) {
+        body += store.getVerboseString()
+    }
+    
     func writeSample(store: SampleStore) {
+        addSample(store: store)
+        
         let path = tmpDirectory.appending(filename)
         
-        let toWrite = header + store.getVerboseString()
+        let toWrite = header + body
         
         //  Writing file
         do {

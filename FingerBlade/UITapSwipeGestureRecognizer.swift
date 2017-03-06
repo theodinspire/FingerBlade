@@ -17,7 +17,7 @@ import UIKit.UIGestureRecognizerSubclass
     var numberOfTapTouchesRequired: Int = 1
     //  Swipe Requirements
     var numberOfSwipeTouchesRequired: Int = 1
-    var minimumSwipeThresholdDistance: CGFloat = 100
+    var minimumSwipeThresholdDistance: CGFloat = 150
     
     //  Internal items
     var tapsMade = 0
@@ -122,30 +122,5 @@ import UIKit.UIGestureRecognizerSubclass
     
     @objc func fireTimer(_ timer: Timer) {
         state = .failed
-    }
-    
-    
-    //  IB Inspectables
-    //      Taps
-    @IBInspectable var taps: Int = 1 {
-        didSet {
-            numberOfTapsRequired = taps
-        }
-    }
-    @IBInspectable var tapTouches: Int = 1 {
-        didSet {
-            numberOfTapTouchesRequired = tapTouches
-        }
-    }
-    //      Swipes
-    @IBInspectable var swipeTouches: Int = 1 {
-        didSet {
-            numberOfSwipeTouchesRequired = swipeTouches
-        }
-    }
-    @IBInspectable var minSwipeDistance: CGFloat = 100 {
-        didSet {
-            minimumSwipeThresholdDistance = minSwipeDistance
-        }
     }
 }
