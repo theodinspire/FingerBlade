@@ -29,8 +29,6 @@ class SubscribeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -50,10 +48,17 @@ class SubscribeViewController: UIViewController {
     }
     
     @IBAction func endEmailEdit(_ sender: UITextField) {
+        
         let isEmail = validateEmail(of: sender.text)
         let buttonText = isEmail ? "Continue" : "Skip"
         contButton.setTitle(buttonText, for: .normal)
         contButton.sizeToFit()
+    }
+    @IBAction func emailReturnPressed(_ sender: UITextField) {
+        sender.resignFirstResponder()
+        if validateEmail(of: sender.text) {
+            performSegue(withIdentifier: "emailEndSegue", sender: sender)
+        }
     }
     
     //  Other functions

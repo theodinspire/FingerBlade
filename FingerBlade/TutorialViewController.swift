@@ -10,6 +10,8 @@ import UIKit
 
 class TutorialViewController: UIViewController {
     @IBOutlet weak var contButton: UIButton!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageView: UIView!
     
     let lefty = UserDefaults.standard.string(forKey: "Hand") == "Left"
     let cut: CutLine = .fendManTut
@@ -32,6 +34,10 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        messageView.alpha = 0
+        messageView.layer.zPosition = 1
+        contButton.layer.zPosition = 2
+        
         tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
@@ -90,7 +96,7 @@ class TutorialViewController: UIViewController {
      // Pass the selected object to the new view controller.
         if let nextView = segue.destination as? CutViewController {
             nextView.cutStore = cutStore
-            nextView.counter = 2
+            nextView.counter = 1
         }
      }
     
@@ -164,9 +170,20 @@ class TutorialViewController: UIViewController {
         word?.removeFromSuperview()
         CATransaction.commit()
         
-        cutStore.put(trail: sender.trail, into: cut)
-        
+        //  Message animations
+        contButton.alpha = 0
         contButton.isHidden = false
+        
+        messageLabel.text = "You got it!"
+        
+        let animateIn = { self.messageView.alpha = 1; self.contButton.alpha = 1 }
+        
+        let options: UIViewAnimationOptions = [.curveEaseInOut, .beginFromCurrentState]
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateIn, completion: nil)
+        
+        //  Prepare
+        cutStore.put(trail: sender.trail, into: cut)
     }
 
 }

@@ -17,7 +17,7 @@ import UIKit.UIGestureRecognizerSubclass
     var numberOfTapTouchesRequired: Int = 1
     //  Swipe Requirements
     var numberOfSwipeTouchesRequired: Int = 1
-    var minimumSwipeThresholdDistance: CGFloat = 200
+    var minimumSwipeThresholdDistance: CGFloat = 150
     
     //  Internal items
     var tapsMade = 0

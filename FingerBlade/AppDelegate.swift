@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //  Set up connection instance
-        //print("The AWS connection has\(KeyRing.setup ? "" : " not") been established")
+        print("The AWS connection has\(KeyRing.setup ? "" : " not") been established")
         
         //  End set up
         return true

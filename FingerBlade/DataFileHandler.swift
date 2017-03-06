@@ -39,7 +39,7 @@ class DataFileHandler {
         header += Date().description + "\n\n"
     }
     
-    func addSample(store: SampleStore) {
+    private func addSample(store: SampleStore) {
         body += store.getVerboseString()
     }
     

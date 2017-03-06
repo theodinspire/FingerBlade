@@ -151,6 +151,36 @@ class AnimationGenerator {
         return point
     }
     
+    static func fadeAnimation(duration: CFTimeInterval) -> CALayer {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.duration = duration / 2   //  Autoreverse will double it
+        animation.autoreverses = true
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.isRemovedOnCompletion = true
+        
+        let layer = CALayer()
+        layer.add(animation, forKey: "opacity")
+        
+        return layer
+    }
+    
+    static func scaleAnimation(duration: CFTimeInterval) -> CALayer {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        animation.duration = duration / 2   //  Autoreverse will double it
+        animation.autoreverses = true
+        animation.fromValue = 1
+        animation.toValue = 2
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.isRemovedOnCompletion = true
+        
+        let layer = CALayer()
+        layer.add(animation, forKey: "transform.scale")
+        
+        return layer
+    }
+    
     private func pointAnimation(long: Bool = false) -> CAAnimation {
         let grow = CABasicAnimation(keyPath: "lineWidth")
         grow.fromValue = lineWeight

@@ -10,6 +10,8 @@ import UIKit
 
 class CutViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var cutLabel: UILabel!
+    @IBOutlet weak var countView: UIView!
     
     var cutStore: SampleStore!
     var shuffled = false
@@ -32,15 +34,23 @@ class CutViewController: UIViewController {
         recognizer.numberOfTapTouchesRequired = 1
         recognizer.numberOfSwipeTouchesRequired = 1
         
+        countView.alpha = 0
+        //countLabel.alpha = 0
+        
         view.addGestureRecognizer(recognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if cutStore == nil { cutStore = SampleStore() }
-        cutIterator = CutLine.all.makeIterator()
-        
+        cutIterator = //CutLine.all.makeIterator()
+            [CutLine.fendManTut, .punSot].makeIterator()
         aniGen = AnimationGenerator(withPathGenerator: CutPathGenerator(ofSize: view.bounds.size))
         countLabel.text = String(counter)
+        //countLabel.font = countLabel.font.withSize(60)
+        
+        //countLabel.layer.zPosition = 1
+        countView.layer.zPosition = 1
+        countLabel.layer.zPosition = 1
         
         setUp(cut: cutIterator?.next())
     }
@@ -63,6 +73,7 @@ class CutViewController: UIViewController {
 
     func setUp(cut: CutLine?) {
         self.cut = cut
+        cutLabel.text = cut?.rawValue ?? "Done!"
         
         CATransaction.begin()
         if aniLayer != nil {
@@ -73,6 +84,9 @@ class CutViewController: UIViewController {
         guard cut != nil else {
             //  TODO: set up segue
             CATransaction.commit()
+            let handler = DataFileHandler()
+            handler.writeSample(store: cutStore)
+            handler.send()
             return
         }
         
@@ -87,11 +101,20 @@ class CutViewController: UIViewController {
         guard cut != nil else { return }
         cutStore.put(trail: sender.trail, into: cut!)
         
-        if counter > cutsToMake {
-            counter = 1
+        if counter >= cutsToMake {
+            counter = 0
             setUp(cut: cutIterator?.next())
         }
         
-        countLabel.text = String(counter)
+        countLabel.text = counter == 0 ? "✔︎" : String(counter)
+        
+        let animateIn = { self.countView.alpha = 1 }
+        let animateOut = { self.countView.alpha = 0 }
+        
+        let options: UIViewAnimationOptions = [.curveEaseInOut, .beginFromCurrentState]
+        
+        let completion = { (_: Bool) -> Void in UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateOut, completion: nil) }
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateIn, completion: completion)
     }
 }
