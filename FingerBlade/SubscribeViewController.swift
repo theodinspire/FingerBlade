@@ -36,9 +36,22 @@ class SubscribeViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let email = emailField.text, validateEmail(of: email) {
-            UserDefaults.standard.set(email, forKey: "Email")
+            let alert = UIAlertController(title: "Subscription Confirmation", message: "By submitting this email, you agree to recieving emails regarding future products from The Odin Spire", preferredStyle: .alert)
             
-            print(UserDefaults.standard.value(forKey: "Email") as? String ?? "Not set")
+            let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+                self.emailField.text = ""
+            })
+            
+            let approve = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
+                UserDefaults.standard.set(email, forKey: "Email")
+                
+                print(UserDefaults.standard.value(forKey: "Email") as? String ?? "Not set")
+            })
+            
+            alert.addAction(cancel)
+            alert.addAction(approve)
+            
+            present(alert, animated: true)
         }
     }
 
@@ -54,17 +67,10 @@ class SubscribeViewController: UIViewController {
         contButton.setTitle(buttonText, for: .normal)
         contButton.sizeToFit()
     }
+    
     @IBAction func emailReturnPressed(_ sender: UITextField) {
         sender.resignFirstResponder()
-        if validateEmail(of: sender.text) {
-            performSegue(withIdentifier: "emailEndSegue", sender: sender)
-        }
     }
     
     //  Other functions
-    func validateEmail(of email: String?) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
-        return email?.range(of: emailRegEx, options: .regularExpression) != nil
-    }
 }

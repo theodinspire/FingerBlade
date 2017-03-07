@@ -97,7 +97,6 @@ class TutorialViewController: UIViewController {
         if let nextView = segue.destination as? CutViewController {
             nextView.cutStore = cutStore
             nextView.counter = 1
-            nextView.cutList = CutLine.all
         }
      }
     

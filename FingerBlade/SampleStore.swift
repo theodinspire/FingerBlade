@@ -22,7 +22,8 @@ class SampleStore {
     }
     
     convenience init () {
-        self.init(cutsToMake: 10, cutList: CutLine.all)
+        self.init(cutsToMake: 10, cutList: //CutLine.all)
+            [CutLine.fendManTut, .sotManFal])   //  TODO: Reset this
     }
     
     func put(trail: [CGPoint], into cut: CutLine) {
