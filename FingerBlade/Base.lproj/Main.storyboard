@@ -248,17 +248,24 @@
                         <viewControllerLayoutGuide type="top" id="GzR-EC-JQy"/>
                         <viewControllerLayoutGuide type="bottom" id="hw1-gl-MiD"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="drG-Hg-QYn" customClass="CutView" customModule="FingerBlade" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="drG-Hg-QYn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRv-Au-Pi5">
+                                <rect key="frame" x="156" y="617" width="62" height="30"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <segue destination="9ne-oH-ypg" kind="showDetail" id="312-ei-HqT"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cut Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afE-zq-KZf">
                                 <rect key="frame" x="149" y="28" width="76.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1X-wW-Hm5">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1X-wW-Hm5" userLabel="Count View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT9-so-BT9">
@@ -282,10 +289,13 @@
                             <constraint firstItem="afE-zq-KZf" firstAttribute="centerX" secondItem="drG-Hg-QYn" secondAttribute="centerX" id="KA8-mc-1TD"/>
                             <constraint firstItem="X1X-wW-Hm5" firstAttribute="leading" secondItem="drG-Hg-QYn" secondAttribute="leading" id="OUu-so-dy9"/>
                             <constraint firstItem="hw1-gl-MiD" firstAttribute="top" secondItem="X1X-wW-Hm5" secondAttribute="bottom" id="R8I-T4-X7K"/>
+                            <constraint firstItem="hw1-gl-MiD" firstAttribute="top" secondItem="aRv-Au-Pi5" secondAttribute="bottom" constant="20" id="RVo-gz-zLd"/>
+                            <constraint firstItem="aRv-Au-Pi5" firstAttribute="centerX" secondItem="drG-Hg-QYn" secondAttribute="centerX" id="aAF-NT-EnZ"/>
                             <constraint firstItem="afE-zq-KZf" firstAttribute="top" secondItem="GzR-EC-JQy" secondAttribute="bottom" constant="8" id="foa-Qr-F0B"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="aRv-Au-Pi5" id="2mm-kv-nt3"/>
                         <outlet property="countLabel" destination="GT9-so-BT9" id="mXC-z5-rIu"/>
                         <outlet property="countView" destination="X1X-wW-Hm5" id="bd1-HM-rQU"/>
                         <outlet property="cutLabel" destination="afE-zq-KZf" id="UyY-NX-lrt"/>
@@ -294,6 +304,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdf-QW-EFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3096.8000000000002" y="35.532233883058474"/>
+        </scene>
+        <!--MenuView-->
+        <scene sceneID="DdT-0t-3uk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Menu" referencedIdentifier="MenuView" id="9ne-oH-ypg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RBv-hE-6aZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3743" y="35"/>
         </scene>
     </scenes>
 </document>

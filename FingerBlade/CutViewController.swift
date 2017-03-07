@@ -12,20 +12,20 @@ class CutViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var cutLabel: UILabel!
     @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var continueButton: UIButton!
     
     var cutStore: SampleStore!
     var shuffled = false
     var counter = 1
     var cutsToMake = 3
     var cut: CutLine?
-    var cutIterator: IndexingIterator<[CutLine]>?
-    
-    var cutList: [CutLine]?
     
     var aniGen: AnimationGenerator!
     var aniLayer: CAShapeLayer!
     
     var recognizer: UITapSwipeGestureRecognizer!
+    
+    var unwind = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +41,12 @@ class CutViewController: UIViewController {
         
         view.addGestureRecognizer(recognizer)
         
-        cutIterator = cutList?.makeIterator()
+        continueButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if cutStore == nil { cutStore = SampleStore() }
-        cutIterator = CutLine.all.makeIterator()
+        
             //[CutLine.fendManTut, .punSot].makeIterator()
         aniGen = AnimationGenerator(withPathGenerator: CutPathGenerator(ofSize: view.bounds.size))
         countLabel.text = String(counter)
@@ -56,7 +56,7 @@ class CutViewController: UIViewController {
         countView.layer.zPosition = 1
         countLabel.layer.zPosition = 1
         
-        setUp(cut: cutIterator?.next())
+        setUp(cut: cutStore.next())
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,7 +90,8 @@ class CutViewController: UIViewController {
             CATransaction.commit()
             let handler = DataFileHandler()
             handler.writeSample(store: cutStore)
-            handler.send()
+            //handler.send()    //  TODO Reestablish
+            continueButton.isHidden = false
             return
         }
         
@@ -107,7 +108,7 @@ class CutViewController: UIViewController {
         
         if counter >= cutsToMake {
             counter = 0
-            setUp(cut: cutIterator?.next())
+            setUp(cut: cutStore.next())
         }
         
         countLabel.text = counter == 0 ? "✔︎" : String(counter)

@@ -25,10 +25,13 @@
 		A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */; };
 		A089910D1E611B5E00259058 /* HandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A089910C1E611B5E00259058 /* HandViewController.swift */; };
 		A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A089910E1E611B8B00259058 /* SubscribeViewController.swift */; };
+		A0B022231E6E44050037DE18 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B022221E6E44050037DE18 /* MenuViewController.swift */; };
+		A0B022251E6E4D4F0037DE18 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B022241E6E4D4F0037DE18 /* SelectionViewController.swift */; };
 		A0B079DC1E6A1CBC00B85E85 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */; };
 		A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446ED1E4E555E006602D4 /* SampleStore.swift */; };
 		A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446EF1E4E55EF006602D4 /* CutLine.swift */; };
 		A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4470F1E5612FB006602D4 /* Transmitter.swift */; };
+		A0B60C2C1E6E382E00C8911D /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B60C2B1E6E382E00C8911D /* Menu.storyboard */; };
 		A0FE14271E691DF400CF6A3B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE14261E691DF400CF6A3B /* Global.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,10 +69,13 @@
 		A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapSwipeGestureRecognizer.swift; sourceTree = "<group>"; };
 		A089910C1E611B5E00259058 /* HandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandViewController.swift; sourceTree = "<group>"; };
 		A089910E1E611B8B00259058 /* SubscribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		A0B022221E6E44050037DE18 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A0B022241E6E4D4F0037DE18 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		A0B446ED1E4E555E006602D4 /* SampleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleStore.swift; sourceTree = "<group>"; };
 		A0B446EF1E4E55EF006602D4 /* CutLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutLine.swift; sourceTree = "<group>"; };
 		A0B4470F1E5612FB006602D4 /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
+		A0B60C2B1E6E382E00C8911D /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		A0FE14261E691DF400CF6A3B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerBlade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +136,8 @@
 				A089910E1E611B8B00259058 /* SubscribeViewController.swift */,
 				A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */,
 				A007A1C91E68B053009D2395 /* CutViewController.swift */,
+				A0B022221E6E44050037DE18 /* MenuViewController.swift */,
+				A0B022241E6E4D4F0037DE18 /* SelectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
 				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
 				A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */,
+				A0B60C2B1E6E382E00C8911D /* Menu.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -303,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0B60C2C1E6E382E00C8911D /* Menu.storyboard in Resources */,
 				A07691741E4C0F76004DF141 /* Keys.plist in Resources */,
 				A07866C61E3C398D009E54F6 /* LaunchScreen.storyboard in Resources */,
 				A07866C31E3C398D009E54F6 /* Assets.xcassets in Resources */,
@@ -385,7 +395,9 @@
 				A0B079DC1E6A1CBC00B85E85 /* TutorialViewController.swift in Sources */,
 				A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */,
 				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
+				A0B022231E6E44050037DE18 /* MenuViewController.swift in Sources */,
 				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,
+				A0B022251E6E4D4F0037DE18 /* SelectionViewController.swift in Sources */,
 				A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
 				A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */,
