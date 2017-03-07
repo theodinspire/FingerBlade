@@ -16,7 +16,7 @@ class CutViewController: UIViewController {
     var cutStore: SampleStore!
     var shuffled = false
     var counter = 1
-    var cutsToMake = 10
+    var cutsToMake = 3
     var cut: CutLine?
     var cutIterator: IndexingIterator<[CutLine]>?
     
@@ -46,8 +46,8 @@ class CutViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if cutStore == nil { cutStore = SampleStore() }
-        cutIterator = //CutLine.all.makeIterator()
-            [CutLine.fendManTut, .punSot].makeIterator()
+        cutIterator = CutLine.all.makeIterator()
+            //[CutLine.fendManTut, .punSot].makeIterator()
         aniGen = AnimationGenerator(withPathGenerator: CutPathGenerator(ofSize: view.bounds.size))
         countLabel.text = String(counter)
         //countLabel.font = countLabel.font.withSize(60)
