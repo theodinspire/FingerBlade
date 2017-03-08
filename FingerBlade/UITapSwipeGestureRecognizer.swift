@@ -20,10 +20,7 @@ import UIKit.UIGestureRecognizerSubclass
     var minimumSwipeThresholdDistance: CGFloat = 150
     
     //  Internal items
-    var tapsMade = 0
     var swipeMade = false
-    
-    var timer: Timer?
     
     var startingPoint: CGPoint = CGPoint()
     var trail: [CGPoint] = []
@@ -32,10 +29,8 @@ import UIKit.UIGestureRecognizerSubclass
     
     override func reset() {
         super.reset()
-        tapsMade = 0
         swipeMade = false
         state = .possible
-        timer = nil
         
         startingPoint = CGPoint()
         
@@ -47,14 +42,10 @@ import UIKit.UIGestureRecognizerSubclass
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         
-        stopTimer()
-        
-        tapsMade += 1
-        
         //  Handle Taps
-        if (tapsMade <= numberOfTapsRequired && numberOfTouches != numberOfTapTouchesRequired) ||
-            (tapsMade == numberOfTapsRequired + 1 && numberOfTouches != numberOfSwipeTouchesRequired) ||
-            tapsMade > numberOfTapsRequired + 1 {
+        if (touches.first!.tapCount <= numberOfTapsRequired && numberOfTouches != numberOfTapTouchesRequired) ||
+            (touches.first!.tapCount == numberOfTapsRequired + 1 && numberOfTouches != numberOfSwipeTouchesRequired) ||
+            touches.first!.tapCount > numberOfTapsRequired + 1 {
             state = .failed
             return
         }
@@ -77,11 +68,12 @@ import UIKit.UIGestureRecognizerSubclass
         }
         
         //  Moves shouldn't be happening on taps
-        if tapsMade != numberOfTapsRequired + 1 {
+        if touches.first!.tapCount != numberOfTapsRequired + 1 {
             state = .failed
             return
-        }   //  Check for correct number of touches already made
+        }
         
+        //  Check for correct number of touches already made
         let loc = location(in: view?.window)
         trail.append(loc)
         
@@ -97,30 +89,11 @@ import UIKit.UIGestureRecognizerSubclass
         super.touchesEnded(touches, with: event)
         if swipeMade {
             state = .recognized
-        } else {
-            startTimer()
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesCancelled(touches, with: event)
         reset()
-    }
-    
-    //  Timer Functions
-    func startTimer() {
-        stopTimer()
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(fireTimer(_:)), userInfo: nil, repeats: false)
-    }
-    
-    func stopTimer() {
-        if let tmr = timer {
-            if tmr.isValid { tmr.invalidate() }
-        }
-    }
-    
-    @objc func fireTimer(_ timer: Timer) {
-        state = .failed
     }
 }
