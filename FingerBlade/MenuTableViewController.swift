@@ -1,21 +1,19 @@
 //
-//  SelectionViewController.swift
+//  MenuTableViewController.swift
 //  FingerBlade
 //
-//  Created by Cormack on 3/7/17.
+//  Created by Cormack on 3/8/17.
 //  Copyright © 2017 the Odin Spire. All rights reserved.
 //
 
 import UIKit
 
-class SelectionViewController: UITableViewController {
-    let cuts = CutLine.all
-    var cutsSelected = [CutLine : Bool]()
+class MenuTableViewController: UITableViewController {
+    @IBOutlet weak var handednessLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,52 +21,42 @@ class SelectionViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        handednessLabel.text = UserDefaults.standard.string(forKey: "Hand") ?? "None"
+        emailLabel.text = UserDefaults.standard.string(forKey: "Email") ?? "None"
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    /*
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        // return 2 //  Commented out for ease of test
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0: //  Options
-            //return cuts.count + 2   // First is number of cuts, second select all, rest indivual cuts
-            return cuts.count   //  TODO: Remove
-        case 1: //  Begin
-            return 1
-        default:
-            return 0
-        }
+        return 0
     }
+    */
 
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "option", for: indexPath) as! CutMenuTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
         // Configure the cell...
-        let cut = cuts[indexPath.row]
-        cell.cut = cut
-        cell.label.text = cut.rawValue
-        cell.marked = cutsSelected[cut] ?? false
-        cell.toggle.isOn = cell.marked
-        cell.delegate = self
-        
+
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? CutMenuTableViewCell {
-            cell.marked = !cell.marked
-            cell.toggle.setOn(cell.marked, animated: true)
-        }
-    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -105,14 +93,15 @@ class SelectionViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if var destination = segue.destination as? OptionViewController {
+            destination.fromMenu = true
+        }
     }
-    */
 
 }

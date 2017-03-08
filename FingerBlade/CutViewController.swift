@@ -17,7 +17,6 @@ class CutViewController: UIViewController {
     var cutStore: SampleStore!
     var shuffled = false
     var counter = 1
-    var cutsToMake = 3
     var cut: CutLine?
     
     var aniGen: AnimationGenerator!
@@ -37,7 +36,6 @@ class CutViewController: UIViewController {
         recognizer.numberOfSwipeTouchesRequired = 1
         
         countView.alpha = 0
-        //countLabel.alpha = 0
         
         view.addGestureRecognizer(recognizer)
         
@@ -64,16 +62,15 @@ class CutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        UserDefaults.standard.set(true, forKey: "InitialSampleCompleted")
     }
-    */
+ 
 
     func setUp(cut: CutLine?) {
         self.cut = cut
@@ -88,9 +85,13 @@ class CutViewController: UIViewController {
         guard cut != nil else {
             //  TODO: set up segue
             CATransaction.commit()
+            
+            view.removeGestureRecognizer(recognizer)
+            
             let handler = DataFileHandler()
             handler.writeSample(store: cutStore)
             //handler.send()    //  TODO Reestablish
+            
             continueButton.isHidden = false
             return
         }
@@ -106,7 +107,7 @@ class CutViewController: UIViewController {
         guard cut != nil else { return }
         cutStore.put(trail: sender.trail, into: cut!)
         
-        if counter >= cutsToMake {
+        if counter >= cutStore.cutsToMake {
             counter = 0
             setUp(cut: cutStore.next())
         }
