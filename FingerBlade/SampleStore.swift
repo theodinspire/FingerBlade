@@ -70,7 +70,7 @@ class SampleStore {
     
     /// Descriptive string of the sample corpus. Organized and labeled by CutLine, each line is a sample consisting of the cartesian coordinates describing the sample
     ///
-    /// - Returns: <#return value description#>
+    /// - Returns: A verbose string
     func getVerboseString() -> String {
         var text = ""
         
