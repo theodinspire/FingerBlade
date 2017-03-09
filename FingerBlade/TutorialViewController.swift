@@ -14,7 +14,7 @@ class TutorialViewController: UIViewController {
     @IBOutlet weak var messageView: UIView!
     
     let lefty = UserDefaults.standard.string(forKey: "Hand") == "Left"
-    let cut: CutLine = .fendManTut
+    var cut: CutLine!
     
     var pathGenerator: CutPathGenerator!
     
@@ -34,6 +34,8 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        cut = cutStore.first
+        
         messageView.alpha = 0
         messageView.layer.zPosition = 1
         contButton.layer.zPosition = 2
@@ -97,7 +99,6 @@ class TutorialViewController: UIViewController {
         if let nextView = segue.destination as? CutViewController {
             nextView.cutStore = cutStore
             nextView.counter = 1
-            nextView.cutList = CutLine.all
         }
      }
     

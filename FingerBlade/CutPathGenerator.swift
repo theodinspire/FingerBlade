@@ -14,7 +14,7 @@ class CutPathGenerator {
     
     init(ofSize size: CGSize) {
         self.size = size
-        lefty = UserDefaults.standard.string(forKey: "Hand") == "Left"
+        lefty = UserDefaults.standard.string(forKey: HAND) == "Left"
     }
     
     //  Constant points
