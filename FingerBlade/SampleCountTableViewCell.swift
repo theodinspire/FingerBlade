@@ -25,6 +25,9 @@ class SampleCountTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    /// Performs the stepper value changed action
+    ///
+    /// - Parameter sender: Stepper object
     @IBAction func stepped(_ sender: UIStepper) {
         let count = Int(sender.value)
         countLabel.text = String(count)

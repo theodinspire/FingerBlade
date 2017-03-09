@@ -103,6 +103,10 @@ class TutorialViewController: UIViewController {
      }
     
     //  Tutorial Methods
+    
+    /// Handles single tap gesture
+    ///
+    /// - Parameter sender: Tap Recognizer
     func tapped(_ sender: UITapGestureRecognizer?) {
         CATransaction.begin()
         
@@ -132,6 +136,9 @@ class TutorialViewController: UIViewController {
         CATransaction.commit()
     }
     
+    /// Handles the solitary swipe gesture
+    ///
+    /// - Parameter sender: Swipe recognizer
     func swiped(_ sender: UITapSwipeGestureRecognizer) {
         CATransaction.begin()
         
@@ -162,6 +169,9 @@ class TutorialViewController: UIViewController {
         CATransaction.commit()
     }
     
+    /// Handles the Tap and Swipe recognizer
+    ///
+    /// - Parameter sender: TapSwipe recognizer
     func  tapSwiped(_ sender: UITapSwipeGestureRecognizer) {
         view.removeGestureRecognizer(tapSwipe)
         

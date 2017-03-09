@@ -9,5 +9,6 @@
 import Foundation
 
 protocol OptionViewController {
+    /// Alters behavior based on whether the screen is attached to the main menu or not
     var fromMenu: Bool { get set }
 }

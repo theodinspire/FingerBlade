@@ -21,6 +21,7 @@ class KeyRing {
     private var isSetUp = false
     
     //  Singleton
+    /// The singleton instance of this AWS communicator
     static private let instance = KeyRing()
     
     //  Singleton init
@@ -45,6 +46,7 @@ class KeyRing {
     }
     
     //  Just making sure this is on
+    /// Checks to see that a connection has been established
     static var setup: Bool {
         get {
             return instance.isSetUp
@@ -52,6 +54,9 @@ class KeyRing {
     }
     
     //  Get things from the ring
+    /// Bucket to which the data goes
     static var bucket: String? { get { return instance.awsS3Bucket } }
+    
+    /// AWS Region where the bucket lives
     static var s3Region: AWSRegionType? { get { return instance.awsS3Region } }
 }

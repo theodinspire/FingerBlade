@@ -54,10 +54,17 @@ class SubscribeViewController: UIViewController, OptionViewController {
     }
 
     //  Storyboard actions
+    
+    /// Removes keyboard when screen is touched outside of the keyboard
+    ///
+    /// - Parameter sender: Base view
     @IBAction func touchOnScreen(_ sender: UIControl) {
         emailField.resignFirstResponder()
     }
     
+    /// Action for when email field is defocused. Checks the validity of the email format
+    ///
+    /// - Parameter sender: Email Text Field
     @IBAction func endEmailEdit(_ sender: UITextField) {
         if fromMenu {
             contButton.isEnabled = validateEmail(of: sender.text)
@@ -69,10 +76,17 @@ class SubscribeViewController: UIViewController, OptionViewController {
         }
     }
     
+    
+    /// Action for when the return button is pressed in the email field
+    ///
+    /// - Parameter sender: Email Text Field
     @IBAction func emailReturnPressed(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
     
+    /// Action for when the save button is pressed
+    ///
+    /// - Parameter sender: Save Button
     @IBAction func savePressed(_ sender: UIButton) {
         if fromMenu {
             showAlert(sender: sender)
@@ -80,6 +94,9 @@ class SubscribeViewController: UIViewController, OptionViewController {
     }
     //  Other functions
     
+    /// Display Alert
+    ///
+    /// - Parameter sender: Whatever prompts the alert
     func showAlert(sender: Any?) {
         if let email = emailField.text, validateEmail(of: email) {
             let alert = UIAlertController(title: "Subscription Confirmation", message: "By submitting this email, you agree to recieving emails regarding future products from The Odin Spire", preferredStyle: .alert)

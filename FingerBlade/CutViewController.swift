@@ -25,8 +25,6 @@ class CutViewController: UIViewController, OptionViewController {
     
     var recognizer: UITapSwipeGestureRecognizer!
     
-    var unwind = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,8 +70,10 @@ class CutViewController: UIViewController, OptionViewController {
         UserDefaults.standard.set(true, forKey: COMPLETE)
         UserDefaults.standard.removeObject(forKey: STORE)
     }
- 
 
+    /// Starts the animations for the next cut and sets up screen for end of sample. Sends the samples too!
+    ///
+    /// - Parameter cut: Cut whose path will be shown, or no cut at all
     func setUp(cut: CutLine?) {
         self.cut = cut
         cutLabel.text = cut?.rawValue ?? "Done!"
@@ -103,6 +103,9 @@ class CutViewController: UIViewController, OptionViewController {
         CATransaction.commit()
     }
     
+    /// Handler for the tapswipe recognizer. Increments count and adds swipe to sample store
+    ///
+    /// - Parameter sender: TapSwipe recognizer
     func cutMade(_ sender: UITapSwipeGestureRecognizer) {
         counter += 1
         
@@ -126,6 +129,9 @@ class CutViewController: UIViewController, OptionViewController {
         UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateIn, completion: completion)
     }
     
+    /// Continue or unwind to the Main Menu
+    ///
+    /// - Parameter sender: Continue button
     @IBAction func continuePressed(_ sender: UIButton) {
         if fromMenu {
             performSegue(withIdentifier: "unwindToMenu", sender: self)

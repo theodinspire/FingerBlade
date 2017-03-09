@@ -27,6 +27,7 @@ import UIKit.UIGestureRecognizerSubclass
     
     //  Testing items
     
+    /// Reset the recognizer to its virgin state
     override func reset() {
         super.reset()
         swipeMade = false
@@ -39,6 +40,11 @@ import UIKit.UIGestureRecognizerSubclass
         }
     }
     
+    /// Process the beginning of touches
+    ///
+    /// - Parameters:
+    ///   - touches: Set of touches on the screen
+    ///   - event: The event trigging this action?
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         
@@ -59,6 +65,11 @@ import UIKit.UIGestureRecognizerSubclass
         trail.append(startingPoint)
     }
     
+    /// Process the movement of fingers and fingerlike objects across the view
+    ///
+    /// - Parameters:
+    ///   - touches: Set of finger locations
+    ///   - event: Event driving the recognizer
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesMoved(touches, with: event)
         
@@ -85,6 +96,11 @@ import UIKit.UIGestureRecognizerSubclass
         }
     }
     
+    /// Process the end of the touches. Determind if the gesture is recognized or not! Raise the dead
+    ///
+    /// - Parameters:
+    ///   - touches: Set of finger locations
+    ///   - event: Event driving us all to the brink
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesEnded(touches, with: event)
         if swipeMade {
@@ -92,6 +108,11 @@ import UIKit.UIGestureRecognizerSubclass
         }
     }
     
+    /// Cancel the touches because--Hey! I've got a phone call
+    ///
+    /// - Parameters:
+    ///   - touches: Set of finger locations
+    ///   - event: Event of the touching
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesCancelled(touches, with: event)
         reset()
