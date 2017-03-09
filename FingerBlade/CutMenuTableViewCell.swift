@@ -16,6 +16,7 @@ class CutMenuTableViewCell: UITableViewCell {
         }
     }
     
+    /// Selection view controller, because it handles the actual data!
     var delegate: SelectionViewController?
     
     @IBOutlet weak var toggle: UISwitch!
@@ -32,6 +33,9 @@ class CutMenuTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    /// Performs the switch action
+    ///
+    /// - Parameter sender: The switch object
     @IBAction func switchHit(_ sender: UISwitch) {
         marked = sender.isOn
     }

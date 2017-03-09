@@ -25,6 +25,7 @@ enum CutLine: String {
     case punSop     = "Overhand Thrust"
     case punCav     = "Thrust with Disengagement"
     
+    /// A list of all the available cuts. Must be updated manually if any are added
     static var all: [CutLine] {
         return [.fendManTut, .fendRivTut, .fendManMez,
             .fendRivMez, .mezMan, .mezRiv, .sotManTut,

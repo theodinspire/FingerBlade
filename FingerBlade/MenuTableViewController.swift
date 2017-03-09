@@ -104,10 +104,16 @@ class MenuTableViewController: UITableViewController {
         }
     }
     
+    /// For use in unwinding from sample cutting screen
+    ///
+    /// - Parameter segue: Segue of return
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
         
     }
-
+    
+    /// Function for clearing defaults, debug only
+    ///
+    /// - Parameter sender: Object that sends the clear request
     @IBAction func clearDefaults(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: HAND)
         UserDefaults.standard.removeObject(forKey: EMAIL)
