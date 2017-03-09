@@ -214,8 +214,8 @@ class AnimationGenerator {
     
     private func strokeEnd(long: Bool = false) -> CAAnimation {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = CGFloat.leastNonzeroMagnitude
-        animation.toValue = 1
+        animation.fromValue = long ? CGFloat.leastNonzeroMagnitude : 0
+        animation.toValue = 1 + CGFloat.leastNonzeroMagnitude
         animation.beginTime = long ? dotDuration * 0.7 : 0
         animation.duration = strokeDuration - strokeChaseDelay
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -232,7 +232,7 @@ class AnimationGenerator {
     private func strokeStart(long: Bool = false) -> CAAnimation {
         let animation = CABasicAnimation(keyPath: "strokeStart")
         animation.fromValue = 0
-        animation.toValue = 1
+        animation.toValue = 1 + CGFloat.leastNonzeroMagnitude
         animation.beginTime = self.strokeChaseDelay + (long ? dotDuration : 0)
         animation.duration = self.strokeDuration - self.strokeChaseDelay
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)

@@ -38,3 +38,10 @@ func standardDateFormatter() -> DateFormatter {
 func mirror(point original: CGPoint) -> CGPoint {
     return CGPoint(x: 1 - original.x, y: original.y)
 }
+
+//  Validate Email
+func validateEmail(of email: String?) -> Bool {
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+    
+    return email?.range(of: emailRegEx, options: .regularExpression) != nil
+}
