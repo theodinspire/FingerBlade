@@ -10,6 +10,11 @@ import Foundation
 import AWSCore
 
 extension AWSRegionType {
+    
+    /// Takes the standard string values describing the AWS regions and returns the associated enum
+    ///
+    /// - Parameter string: Region String
+    /// - Returns: Region Enum
     static func getRegionType(from string: String?) -> AWSRegionType? {
         if let str = string {
             switch str.lowercased() {

@@ -24,6 +24,12 @@ class Transmitter {
             }
     }
     
+    
+    /// Sends data to AWS S3 bucket
+    ///
+    /// - Parameters:
+    ///   - data: Data to be uploaded
+    ///   - filename: Key to place the data under
     static func upload(data: Data?, named filename: String) {
         if KeyRing.setup {
             if let data = data {
