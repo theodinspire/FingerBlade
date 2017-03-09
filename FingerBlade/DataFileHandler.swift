@@ -20,10 +20,16 @@ class DataFileHandler {
     var body = ""
     var sent = false
     
+    
+    /// Default constructor, uses date and GUID to title file
     convenience init() {
         self.init(filename: standardDateFormatter().string(from: Date()) + "." + (UIDevice.current.identifierForVendor?.description ?? "Anonymous") + ".txt")
     }
     
+    
+    /// Constructor: preps header of the file using User Defaults
+    ///
+    /// - Parameter filename: Targeted filename
     init(filename: String) {
         self.filename = filename
         
@@ -40,10 +46,16 @@ class DataFileHandler {
         header += Date().description + "\n\n"
     }
     
+    /// Preps a body from the corpus of samples
+    ///
+    /// - Parameter store: A Collection of cut samples
     private func addSample(store: SampleStore) {
         body += store.getVerboseString()
     }
     
+    /// Writes a sample to file
+    ///
+    /// - Parameter store: Sample to be written
     func writeSample(store: SampleStore) {
         addSample(store: store)
         
@@ -60,6 +72,7 @@ class DataFileHandler {
         }
     }
     
+    /// Send written file to AWS S3
     func send() {
         Transmitter.upload(data: fileManager.contents(atPath: tmpDirectory.appending(filename)), named: filename)
     }

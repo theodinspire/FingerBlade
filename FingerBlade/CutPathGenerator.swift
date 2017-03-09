@@ -12,6 +12,9 @@ class CutPathGenerator {
     let size: CGSize
     let lefty: Bool
     
+    /// Initilizes the generator to a target view
+    ///
+    /// - Parameter size: Size of the target view
     init(ofSize size: CGSize) {
         self.size = size
         lefty = UserDefaults.standard.string(forKey: HAND) == "Left"
@@ -41,6 +44,10 @@ class CutPathGenerator {
     private static let cavUp = CGPoint(x: cavazione.x, y: 0.60)
     private static let cavDown = CGPoint(x: cavazione.x, y: 0.40)
     
+    /// Builds a Bezier path for a particular cut line
+    ///
+    /// - Parameter cut: Cut line requested
+    /// - Returns: Bezier path of the line
     func path(`for` cut: CutLine) -> UIBezierPath {
         let path = UIBezierPath()
         
@@ -73,6 +80,10 @@ class CutPathGenerator {
         return path
     }
     
+    /// Gives the starting location of a cut
+    ///
+    /// - Parameter cut: Cut line
+    /// - Returns: Beginning location of the cut
     func start(`for` cut: CutLine) -> CGPoint {
         let point: CGPoint
         
@@ -100,6 +111,10 @@ class CutPathGenerator {
         return point * size
     }
     
+    /// Gives the ending location of a cut
+    ///
+    /// - Parameter cut: Cut line
+    /// - Returns: Endpoint of the cut
     func end(`for` cut: CutLine) -> CGPoint {
         let point: CGPoint
         
@@ -133,12 +148,22 @@ class CutPathGenerator {
         return point * size
     }
     
+    /// Returns the properly handed location of a point given the User's chosen handedness
+    ///
+    /// - Parameter point: Point to be tranlsated, if necessary
+    /// - Returns: Translated point
     private func handed(_ point: CGPoint) -> CGPoint {
         return lefty ? mirror(point: point) : point
     }
 }
 
 extension CGPoint {
+    /// Turns a point defined as a ratio (with values from 0 to 1) to its related point in cartesian coordinates scaled to the size of the target view
+    ///
+    /// - Parameters:
+    ///   - point: Ratio defined point
+    ///   - scale: Size of targeted view
+    /// - Returns: Point scaled to equivalent location in view
     static func *(_ point: CGPoint, _ scale: CGSize) -> CGPoint {
         return CGPoint(x: point.x * scale.width, y: point.y * scale.height)
     }
