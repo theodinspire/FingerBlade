@@ -35,7 +35,7 @@ class SubscribeViewController: UIViewController, OptionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if fromMenu {
-            emailField.placeholder = UserDefaults.standard.string(forKey: "Email") ?? ""
+            emailField.placeholder = UserDefaults.standard.string(forKey: EMAIL) ?? ""
         }
     }
 
@@ -89,9 +89,9 @@ class SubscribeViewController: UIViewController, OptionViewController {
             })
             
             let approve = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
-                UserDefaults.standard.set(email, forKey: "Email")
+                UserDefaults.standard.set(email, forKey: EMAIL)
                 
-                print(UserDefaults.standard.value(forKey: "Email") as? String ?? "Not set")
+                print(UserDefaults.standard.value(forKey: EMAIL) as? String ?? "Not set")
                 
                 self.emailField.placeholder = email
                 self.emailField.text = ""

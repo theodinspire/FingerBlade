@@ -25,8 +25,8 @@ class MenuTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        handednessLabel.text = UserDefaults.standard.string(forKey: "Hand") ?? "None"
-        emailLabel.text = UserDefaults.standard.string(forKey: "Email") ?? "None"
+        handednessLabel.text = UserDefaults.standard.string(forKey: HAND) ?? "None"
+        emailLabel.text = UserDefaults.standard.string(forKey: EMAIL) ?? "None"
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,5 +103,15 @@ class MenuTableViewController: UITableViewController {
             destination.fromMenu = true
         }
     }
+    
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
+        
+    }
 
+    @IBAction func clearDefaults(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: HAND)
+        UserDefaults.standard.removeObject(forKey: EMAIL)
+        UserDefaults.standard.removeObject(forKey: STORE)
+        UserDefaults.standard.removeObject(forKey: COMPLETE)
+    }
 }

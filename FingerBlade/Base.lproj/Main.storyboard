@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -245,7 +245,7 @@
         <!--Cut View Controller-->
         <scene sceneID="pd6-es-MsY">
             <objects>
-                <viewController id="14l-ei-1f0" customClass="CutViewController" customModule="FingerBlade" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CutView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="14l-ei-1f0" customClass="CutViewController" customModule="FingerBlade" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GzR-EC-JQy"/>
                         <viewControllerLayoutGuide type="bottom" id="hw1-gl-MiD"/>

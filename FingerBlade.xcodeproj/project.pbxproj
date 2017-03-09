@@ -13,6 +13,7 @@
 		A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F351E4CFB0600DA581A /* AWSRegionType.swift */; };
 		A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F371E4D00DA00DA581A /* KeyRing.swift */; };
 		A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */; };
+		A05E9B451E70E9DE00AF9C59 /* SampleCountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05E9B441E70E9DE00AF9C59 /* SampleCountTableViewCell.swift */; };
 		A069B2761E6A85650027941C /* CutPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069B2751E6A85650027941C /* CutPathGenerator.swift */; };
 		A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */; };
 		A07691741E4C0F76004DF141 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A07691731E4C0F76004DF141 /* Keys.plist */; };
@@ -54,6 +55,7 @@
 		A0199F351E4CFB0600DA581A /* AWSRegionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSRegionType.swift; sourceTree = "<group>"; };
 		A0199F371E4D00DA00DA581A /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
 		A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFileHandler.swift; sourceTree = "<group>"; };
+		A05E9B441E70E9DE00AF9C59 /* SampleCountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCountTableViewCell.swift; sourceTree = "<group>"; };
 		A069B2751E6A85650027941C /* CutPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutPathGenerator.swift; sourceTree = "<group>"; };
 		A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationGenerator.swift; sourceTree = "<group>"; };
 		A07691731E4C0F76004DF141 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */,
 				A0B55FF81E705EA300986074 /* CutMenuTableViewCell.swift */,
+				A05E9B441E70E9DE00AF9C59 /* SampleCountTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -143,10 +146,10 @@
 		A01B0FCB1E554CC800C1C195 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
-				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
 				A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */,
+				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
 				A0B55FFA1E708AE100986074 /* Menu.storyboard */,
+				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -198,9 +201,10 @@
 		A0958E121E709E6800D446C4 /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				A0958E101E709E0600D446C4 /* OptionViewController.swift */,
 				A089910C1E611B5E00259058 /* HandViewController.swift */,
 				A089910E1E611B8B00259058 /* SubscribeViewController.swift */,
+				A007A1C91E68B053009D2395 /* CutViewController.swift */,
+				A0958E101E709E0600D446C4 /* OptionViewController.swift */,
 			);
 			name = Options;
 			sourceTree = "<group>";
@@ -220,7 +224,6 @@
 			children = (
 				A07866BD1E3C398D009E54F6 /* WelcomeViewController.swift */,
 				A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */,
-				A007A1C91E68B053009D2395 /* CutViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				A0B079DC1E6A1CBC00B85E85 /* TutorialViewController.swift in Sources */,
 				A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */,
 				A0958E111E709E0600D446C4 /* OptionViewController.swift in Sources */,
+				A05E9B451E70E9DE00AF9C59 /* SampleCountTableViewCell.swift in Sources */,
 				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
 				A0B560001E708C3000986074 /* MenuTableViewController.swift in Sources */,
 				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,

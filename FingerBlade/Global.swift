@@ -8,6 +8,12 @@
 
 import UIKit
 
+//  Strings for UserDefaults
+let HAND = "Hand"
+let EMAIL = "Email"
+let STORE = "CurrentStore"
+let COMPLETE = "InitialSampleCompleted"
+
 //  Create array of CGPoints from a string
 func createCGPointArray(from string: String) -> [CGPoint] {
     let split = string.replacingOccurrences(of: "(", with: "").components(separatedBy: "), ")

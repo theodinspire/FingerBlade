@@ -8,9 +8,17 @@
 
 import UIKit
 
+enum Section: Int {
+    case start = 0, count, cuts
+}
+
 class SelectionViewController: UITableViewController {
     let cuts = CutLine.all
+    
+    var samplesPerCut = 3
     var cutsSelected = [CutLine : Bool]()
+    
+    let optionsOffset = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,40 +41,96 @@ class SelectionViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        // return 2 //  Commented out for ease of test
-        return 1
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0: //  Options
-            //return cuts.count + 2   // First is number of cuts, second select all, rest indivual cuts
-            return cuts.count   //  TODO: Remove
-        case 1: //  Begin
+        guard let sect = Section(rawValue: section) else { return 0 }
+        
+        switch sect {
+        case .count: //  Count
             return 1
-        default:
-            return 0
+        case .cuts: //  Options
+            return cuts.count + optionsOffset
+        case .start: //  Begin
+            return 1
         }
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "option", for: indexPath) as! CutMenuTableViewCell
-        // Configure the cell...
-        let cut = cuts[indexPath.row]
-        cell.cut = cut
-        cell.label.text = cut.rawValue
-        cell.marked = cutsSelected[cut] ?? false
-        cell.toggle.isOn = cell.marked
-        cell.delegate = self
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sect = Section(rawValue: section) else { return nil }
         
-        return cell
+        switch sect {
+        case .count:
+            return "Sample Size per Cut"
+        case .cuts:
+            return "Cuts for Sample"
+        default:
+            return nil
+        }
+    }
+        
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = (Section(rawValue: indexPath.section))!
+        let row = indexPath.row
+        
+        switch (section, row) {
+        case (.count, _):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCount", for: indexPath) as! SampleCountTableViewCell
+            cell.delegate = self
+            cell.countStepper.value = Double(samplesPerCut)
+            return cell
+        case (.cuts, 0):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "selectAll", for: indexPath)
+            return cell
+        case (.cuts, let r) where r >= optionsOffset:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "option", for: indexPath) as! CutMenuTableViewCell
+            
+            let cut = cuts[r - optionsOffset]
+            cell.cut = cut
+            cell.label.text = cut.rawValue
+            cell.marked = cutsSelected[cut] ?? false
+            cell.toggle.isOn = cell.marked
+            cell.delegate = self
+            
+            return cell
+        case (.start, _):
+            return tableView.dequeueReusableCell(withIdentifier: "begin", for: indexPath)
+        default:
+            return UITableViewCell()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? CutMenuTableViewCell {
+        if (Section(rawValue: indexPath.section)!, indexPath.row) == (.cuts, 0) {
+            for cut in cuts {
+                cutsSelected[cut] = true
+            }
+            
+            for rowItem in tableView.visibleCells {
+                if let cell = rowItem as? CutMenuTableViewCell {
+                    cell.toggle.setOn(true, animated: true)
+                }
+            }
+        } else if let cell = tableView.cellForRow(at: indexPath) as? CutMenuTableViewCell {
             cell.marked = !cell.marked
             cell.toggle.setOn(cell.marked, animated: true)
+        } else if indexPath.section == Section.start.rawValue {
+            if cutsSelected.values.contains(true) {
+                let destination = storyboard?.instantiateViewController(withIdentifier: "CutView") as! CutViewController
+                
+                var cutList = [CutLine]()
+                for cut in cuts {
+                    if let selection = cutsSelected[cut], selection {
+                        cutList.append(cut)
+                    }
+                }
+                
+                destination.fromMenu = true
+                destination.cutStore = SampleStore(cutsToMake: samplesPerCut, cutList: cutList)
+                
+                present(destination, animated: true, completion: nil)
+            }
         }
     }
 
@@ -105,14 +169,26 @@ class SelectionViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let destination = segue.destination as? CutViewController {
+            destination.fromMenu = true
+            
+            var cutList = [CutLine]()
+            
+            for cut in cuts {
+                if let selection = cutsSelected[cut], selection {
+                    cutList.append(cut)
+                }
+            }
+            
+            destination.cutStore = SampleStore(cutsToMake: samplesPerCut, cutList: cutList)
+        }
     }
-    */
 
 }

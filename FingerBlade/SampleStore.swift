@@ -12,8 +12,15 @@ import UIKit
 class SampleStore {
     private var trails = [CutLine : [[CGPoint]]]()
     var cutsToMake: Int
+    var current: CutLine?
     var cutList: [CutLine]
     var iter: IndexingIterator<[CutLine]>
+    
+    var first: CutLine? {
+        get {
+            return cutList.first
+        }
+    }
     
     init(cutsToMake numCuts: Int, cutList cuts: [CutLine]) {
         cutsToMake = numCuts
@@ -22,8 +29,7 @@ class SampleStore {
     }
     
     convenience init () {
-        self.init(cutsToMake: //10, cutList: CutLine.all)
-            3, cutList: [CutLine.fendManTut, .sotManFal])   //  TODO: Reset this
+        self.init(cutsToMake: 10, cutList: CutLine.all)
     }
     
     func put(trail: [CGPoint], into cut: CutLine) {
@@ -34,12 +40,11 @@ class SampleStore {
         }
     }
     
-    func get(from cut: CutLine) -> [[CGPoint]]? {
-        return trails[cut]
-    }
+    func get(from cut: CutLine) -> [[CGPoint]]? { return trails[cut] }
     
     func next() -> CutLine? {
-        return iter.next()
+        current = iter.next()
+        return current
     }
     
     func getVerboseString() -> String {

@@ -29,7 +29,7 @@ class HandViewController: UIViewController, OptionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let hand = UserDefaults.standard.string(forKey: "Hand") {
+        if let hand = UserDefaults.standard.string(forKey: HAND) {
             for i in 0..<handPicker.numberOfSegments {
                 if handPicker.titleForSegment(at: i) == hand {
                     handPicker.selectedSegmentIndex = i
@@ -43,9 +43,9 @@ class HandViewController: UIViewController, OptionViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         let hand = handPicker.titleForSegment(at: handPicker.selectedSegmentIndex)
-        UserDefaults.standard.set(hand, forKey: "Hand")
+        UserDefaults.standard.set(hand, forKey: HAND)
         
-        print(UserDefaults.standard.string(forKey: "Hand") ?? "Not set")
+        print(UserDefaults.standard.string(forKey: HAND) ?? "Not set")
     }
 
     override func didReceiveMemoryWarning() {

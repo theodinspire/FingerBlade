@@ -8,16 +8,17 @@
 
 import UIKit
 
-class CutViewController: UIViewController {
+class CutViewController: UIViewController, OptionViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var cutLabel: UILabel!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var continueButton: UIButton!
     
     var cutStore: SampleStore!
-    var shuffled = false
-    var counter = 1
+    var counter = 0
     var cut: CutLine?
+    
+    var fromMenu = false
     
     var aniGen: AnimationGenerator!
     var aniLayer: CAShapeLayer!
@@ -68,7 +69,8 @@ class CutViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        UserDefaults.standard.set(true, forKey: "InitialSampleCompleted")
+        UserDefaults.standard.set(true, forKey: COMPLETE)
+        UserDefaults.standard.removeObject(forKey: STORE)
     }
  
 
@@ -90,7 +92,7 @@ class CutViewController: UIViewController {
             
             let handler = DataFileHandler()
             handler.writeSample(store: cutStore)
-            //handler.send()    //  TODO Reestablish
+            handler.send()    //  TODO Reestablish
             
             continueButton.isHidden = false
             return
@@ -122,5 +124,11 @@ class CutViewController: UIViewController {
         let completion = { (_: Bool) -> Void in UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateOut, completion: nil) }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateIn, completion: completion)
+    }
+    
+    @IBAction func continuePressed(_ sender: UIButton) {
+        if fromMenu {
+            performSegue(withIdentifier: "unwindToMenu", sender: self)
+        }
     }
 }

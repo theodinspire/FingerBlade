@@ -34,7 +34,7 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        cut = cutStore.next()
+        cut = cutStore.first
         
         messageView.alpha = 0
         messageView.layer.zPosition = 1
