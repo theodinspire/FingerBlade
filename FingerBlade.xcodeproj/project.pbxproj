@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1C43CB88DFC27B34F691E04A /* Pods_FingerBlade.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */; };
-		A007A1C81E688868009D2395 /* CutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A007A1C71E688868009D2395 /* CutView.swift */; };
+		A00115DC1E6F4923003890A5 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00115DB1E6F4923003890A5 /* SelectionViewController.swift */; };
 		A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A007A1C91E68B053009D2395 /* CutViewController.swift */; };
 		A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F351E4CFB0600DA581A /* AWSRegionType.swift */; };
 		A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0199F371E4D00DA00DA581A /* KeyRing.swift */; };
 		A01B0FC81E554A9600C1C195 /* DataFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */; };
+		A05E9B451E70E9DE00AF9C59 /* SampleCountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05E9B441E70E9DE00AF9C59 /* SampleCountTableViewCell.swift */; };
 		A069B2761E6A85650027941C /* CutPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069B2751E6A85650027941C /* CutPathGenerator.swift */; };
 		A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */; };
 		A07691741E4C0F76004DF141 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A07691731E4C0F76004DF141 /* Keys.plist */; };
@@ -25,10 +26,14 @@
 		A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */; };
 		A089910D1E611B5E00259058 /* HandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A089910C1E611B5E00259058 /* HandViewController.swift */; };
 		A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A089910E1E611B8B00259058 /* SubscribeViewController.swift */; };
+		A0958E111E709E0600D446C4 /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0958E101E709E0600D446C4 /* OptionViewController.swift */; };
 		A0B079DC1E6A1CBC00B85E85 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */; };
 		A0B446EE1E4E555E006602D4 /* SampleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446ED1E4E555E006602D4 /* SampleStore.swift */; };
 		A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B446EF1E4E55EF006602D4 /* CutLine.swift */; };
 		A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4470F1E5612FB006602D4 /* Transmitter.swift */; };
+		A0B55FF91E705EA300986074 /* CutMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B55FF81E705EA300986074 /* CutMenuTableViewCell.swift */; };
+		A0B55FFB1E708AE100986074 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0B55FFA1E708AE100986074 /* Menu.storyboard */; };
+		A0B560001E708C3000986074 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B55FFF1E708C3000986074 /* MenuTableViewController.swift */; };
 		A0FE14271E691DF400CF6A3B /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE14261E691DF400CF6A3B /* Global.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,11 +50,12 @@
 /* Begin PBXFileReference section */
 		1483090703F751B942F2E77E /* Pods-FingerBlade.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.debug.xcconfig"; sourceTree = "<group>"; };
 		945CD0063663FDFED168BBF4 /* Pods-FingerBlade.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FingerBlade.release.xcconfig"; path = "Pods/Target Support Files/Pods-FingerBlade/Pods-FingerBlade.release.xcconfig"; sourceTree = "<group>"; };
-		A007A1C71E688868009D2395 /* CutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutView.swift; sourceTree = "<group>"; };
+		A00115DB1E6F4923003890A5 /* SelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		A007A1C91E68B053009D2395 /* CutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutViewController.swift; sourceTree = "<group>"; };
 		A0199F351E4CFB0600DA581A /* AWSRegionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSRegionType.swift; sourceTree = "<group>"; };
 		A0199F371E4D00DA00DA581A /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
 		A01B0FC71E554A9600C1C195 /* DataFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFileHandler.swift; sourceTree = "<group>"; };
+		A05E9B441E70E9DE00AF9C59 /* SampleCountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCountTableViewCell.swift; sourceTree = "<group>"; };
 		A069B2751E6A85650027941C /* CutPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutPathGenerator.swift; sourceTree = "<group>"; };
 		A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationGenerator.swift; sourceTree = "<group>"; };
 		A07691731E4C0F76004DF141 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
@@ -66,10 +72,14 @@
 		A07866DB1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapSwipeGestureRecognizer.swift; sourceTree = "<group>"; };
 		A089910C1E611B5E00259058 /* HandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandViewController.swift; sourceTree = "<group>"; };
 		A089910E1E611B8B00259058 /* SubscribeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
+		A0958E101E709E0600D446C4 /* OptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
 		A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		A0B446ED1E4E555E006602D4 /* SampleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleStore.swift; sourceTree = "<group>"; };
 		A0B446EF1E4E55EF006602D4 /* CutLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutLine.swift; sourceTree = "<group>"; };
 		A0B4470F1E5612FB006602D4 /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
+		A0B55FF81E705EA300986074 /* CutMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CutMenuTableViewCell.swift; sourceTree = "<group>"; };
+		A0B55FFA1E708AE100986074 /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
+		A0B55FFF1E708C3000986074 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		A0FE14261E691DF400CF6A3B /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		AAD9BB5334EDD74B83CAF556 /* Pods_FingerBlade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FingerBlade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,7 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				A06E1B121E6B11C4009572FB /* AnimationGenerator.swift */,
-				A007A1C71E688868009D2395 /* CutView.swift */,
+				A0B55FF81E705EA300986074 /* CutMenuTableViewCell.swift */,
+				A05E9B441E70E9DE00AF9C59 /* SampleCountTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -125,11 +136,9 @@
 			isa = PBXGroup;
 			children = (
 				A07866BB1E3C398D009E54F6 /* AppDelegate.swift */,
-				A07866BD1E3C398D009E54F6 /* WelcomeViewController.swift */,
-				A089910C1E611B5E00259058 /* HandViewController.swift */,
-				A089910E1E611B8B00259058 /* SubscribeViewController.swift */,
-				A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */,
-				A007A1C91E68B053009D2395 /* CutViewController.swift */,
+				A0B55FFD1E708BE400986074 /* Main */,
+				A0B55FFE1E708BF100986074 /* Menu */,
+				A0958E121E709E6800D446C4 /* Options */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -137,9 +146,10 @@
 		A01B0FCB1E554CC800C1C195 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
-				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
 				A07866C41E3C398D009E54F6 /* LaunchScreen.storyboard */,
+				A07866BF1E3C398D009E54F6 /* Main.storyboard */,
+				A0B55FFA1E708AE100986074 /* Menu.storyboard */,
+				A07866C21E3C398D009E54F6 /* Assets.xcassets */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -188,6 +198,17 @@
 			path = FingerBladeTests;
 			sourceTree = "<group>";
 		};
+		A0958E121E709E6800D446C4 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				A089910C1E611B5E00259058 /* HandViewController.swift */,
+				A089910E1E611B8B00259058 /* SubscribeViewController.swift */,
+				A007A1C91E68B053009D2395 /* CutViewController.swift */,
+				A0958E101E709E0600D446C4 /* OptionViewController.swift */,
+			);
+			name = Options;
+			sourceTree = "<group>";
+		};
 		A0B446EC1E4E5530006602D4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +217,24 @@
 				A069B2751E6A85650027941C /* CutPathGenerator.swift */,
 			);
 			name = Data;
+			sourceTree = "<group>";
+		};
+		A0B55FFD1E708BE400986074 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				A07866BD1E3C398D009E54F6 /* WelcomeViewController.swift */,
+				A0B079DB1E6A1CBC00B85E85 /* TutorialViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		A0B55FFE1E708BF100986074 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A0B55FFF1E708C3000986074 /* MenuTableViewController.swift */,
+				A00115DB1E6F4923003890A5 /* SelectionViewController.swift */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		A0E295951E52753E00B2224F /* AWS */ = {
@@ -306,6 +345,7 @@
 				A07691741E4C0F76004DF141 /* Keys.plist in Resources */,
 				A07866C61E3C398D009E54F6 /* LaunchScreen.storyboard in Resources */,
 				A07866C31E3C398D009E54F6 /* Assets.xcassets in Resources */,
+				A0B55FFB1E708AE100986074 /* Menu.storyboard in Resources */,
 				A07866C11E3C398D009E54F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,14 +419,18 @@
 				A07866DC1E3C39E0009E54F6 /* UITapSwipeGestureRecognizer.swift in Sources */,
 				A07866BC1E3C398D009E54F6 /* AppDelegate.swift in Sources */,
 				A0199F381E4D00DA00DA581A /* KeyRing.swift in Sources */,
-				A007A1C81E688868009D2395 /* CutView.swift in Sources */,
 				A0FE14271E691DF400CF6A3B /* Global.swift in Sources */,
 				A069B2761E6A85650027941C /* CutPathGenerator.swift in Sources */,
 				A0B079DC1E6A1CBC00B85E85 /* TutorialViewController.swift in Sources */,
 				A089910F1E611B8B00259058 /* SubscribeViewController.swift in Sources */,
+				A0958E111E709E0600D446C4 /* OptionViewController.swift in Sources */,
+				A05E9B451E70E9DE00AF9C59 /* SampleCountTableViewCell.swift in Sources */,
 				A0B447101E5612FB006602D4 /* Transmitter.swift in Sources */,
+				A0B560001E708C3000986074 /* MenuTableViewController.swift in Sources */,
 				A0B446F01E4E55EF006602D4 /* CutLine.swift in Sources */,
+				A00115DC1E6F4923003890A5 /* SelectionViewController.swift in Sources */,
 				A06E1B131E6B11C4009572FB /* AnimationGenerator.swift in Sources */,
+				A0B55FF91E705EA300986074 /* CutMenuTableViewCell.swift in Sources */,
 				A0199F361E4CFB0600DA581A /* AWSRegionType.swift in Sources */,
 				A007A1CA1E68B053009D2395 /* CutViewController.swift in Sources */,
 			);

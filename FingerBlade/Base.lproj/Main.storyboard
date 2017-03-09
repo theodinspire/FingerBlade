@@ -23,20 +23,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7t-hS-RdO">
-                                <rect key="frame" x="156.5" y="617" width="62" height="30"/>
+                                <rect key="frame" x="157" y="617" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
                                     <segue destination="KgG-9h-Yjx" kind="showDetail" action="showViewController:sender:" id="xf1-np-3lK"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Thank you for participating in this project" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJy-cH-ukz">
-                                <rect key="frame" x="16" y="323.5" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="323" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vp-1h-gwP">
-                                <rect key="frame" x="121" y="276.5" width="133" height="39"/>
+                                <rect key="frame" x="121" y="276" width="133" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -106,6 +106,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="Tpu-dw-UTy" id="2yQ-uD-jkj"/>
                         <outlet property="handPicker" destination="Fhr-mw-hX8" id="eyR-Gk-sub"/>
                     </connections>
                 </viewController>
@@ -136,7 +137,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOw-e5-VsZ">
-                                <rect key="frame" x="135" y="356" width="104.5" height="17"/>
+                                <rect key="frame" x="135" y="356" width="105" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -148,9 +149,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQz-CX-yMS">
-                                <rect key="frame" x="156.5" y="617" width="62" height="30"/>
+                                <rect key="frame" x="157" y="617" width="62" height="30"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
+                                    <action selector="savePressed:" destination="Sgq-0j-trc" eventType="touchUpInside" id="u5J-3k-cZV"/>
                                     <segue destination="N7q-ix-3NW" kind="showDetail" identifier="emailEndSegue" id="hJL-i3-dZC"/>
                                 </connections>
                             </button>
@@ -243,26 +245,20 @@
         <!--Cut View Controller-->
         <scene sceneID="pd6-es-MsY">
             <objects>
-                <viewController id="14l-ei-1f0" customClass="CutViewController" customModule="FingerBlade" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CutView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="14l-ei-1f0" customClass="CutViewController" customModule="FingerBlade" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GzR-EC-JQy"/>
                         <viewControllerLayoutGuide type="bottom" id="hw1-gl-MiD"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="drG-Hg-QYn" customClass="CutView" customModule="FingerBlade" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="drG-Hg-QYn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cut Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afE-zq-KZf">
-                                <rect key="frame" x="149" y="28" width="76.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1X-wW-Hm5">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1X-wW-Hm5" userLabel="Count View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT9-so-BT9">
-                                        <rect key="frame" x="159" y="261.5" width="58" height="144"/>
+                                        <rect key="frame" x="159" y="262" width="58" height="144"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="120"/>
                                         <color key="textColor" red="0.21440000000000001" green="0.67000000000000004" blue="0.46498" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -274,6 +270,19 @@
                                     <constraint firstItem="GT9-so-BT9" firstAttribute="centerY" secondItem="X1X-wW-Hm5" secondAttribute="centerY" id="dhI-Ku-ncm"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRv-Au-Pi5">
+                                <rect key="frame" x="156" y="617" width="62" height="30"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <segue destination="wYd-yL-VjY" kind="showDetail" id="vK9-0h-KwQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cut Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afE-zq-KZf">
+                                <rect key="frame" x="149" y="28" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -282,10 +291,13 @@
                             <constraint firstItem="afE-zq-KZf" firstAttribute="centerX" secondItem="drG-Hg-QYn" secondAttribute="centerX" id="KA8-mc-1TD"/>
                             <constraint firstItem="X1X-wW-Hm5" firstAttribute="leading" secondItem="drG-Hg-QYn" secondAttribute="leading" id="OUu-so-dy9"/>
                             <constraint firstItem="hw1-gl-MiD" firstAttribute="top" secondItem="X1X-wW-Hm5" secondAttribute="bottom" id="R8I-T4-X7K"/>
+                            <constraint firstItem="hw1-gl-MiD" firstAttribute="top" secondItem="aRv-Au-Pi5" secondAttribute="bottom" constant="20" id="RVo-gz-zLd"/>
+                            <constraint firstItem="aRv-Au-Pi5" firstAttribute="centerX" secondItem="drG-Hg-QYn" secondAttribute="centerX" id="aAF-NT-EnZ"/>
                             <constraint firstItem="afE-zq-KZf" firstAttribute="top" secondItem="GzR-EC-JQy" secondAttribute="bottom" constant="8" id="foa-Qr-F0B"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="aRv-Au-Pi5" id="2mm-kv-nt3"/>
                         <outlet property="countLabel" destination="GT9-so-BT9" id="mXC-z5-rIu"/>
                         <outlet property="countView" destination="X1X-wW-Hm5" id="bd1-HM-rQU"/>
                         <outlet property="cutLabel" destination="afE-zq-KZf" id="UyY-NX-lrt"/>
@@ -294,6 +306,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdf-QW-EFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3096.8000000000002" y="35.532233883058474"/>
+        </scene>
+        <!--MenuView-->
+        <scene sceneID="vbg-ti-Ijc">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Menu" storyboardName="Menu" referencedIdentifier="MenuView" id="wYd-yL-VjY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kCk-wr-xuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3806" y="35"/>
         </scene>
     </scenes>
 </document>

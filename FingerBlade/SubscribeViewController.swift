@@ -8,20 +8,35 @@
 
 import UIKit
 
-class SubscribeViewController: UIViewController {
+class SubscribeViewController: UIViewController, OptionViewController {
     //  Story board items
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var contButton: UIButton!
     
-    //  Class fields
+    //  Class Properties
+    var fromMenu = false
 
     //  UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        contButton.titleLabel?.textAlignment = .center
-        contButton.setTitle("Skip", for: .normal)
+        if fromMenu {
+            contButton.titleLabel?.textAlignment = .center
+            contButton.setTitle("Save", for: .normal)
+            contButton.isEnabled = false
+        } else {
+            contButton.titleLabel?.textAlignment = .center
+            contButton.setTitle("Skip", for: .normal)
+            contButton.isEnabled = true
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if fromMenu {
+            emailField.placeholder = UserDefaults.standard.string(forKey: EMAIL) ?? ""
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,11 +50,7 @@ class SubscribeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let email = emailField.text, validateEmail(of: email) {
-            UserDefaults.standard.set(email, forKey: "Email")
-            
-            print(UserDefaults.standard.value(forKey: "Email") as? String ?? "Not set")
-        }
+        showAlert(sender: sender)
     }
 
     //  Storyboard actions
@@ -48,23 +59,48 @@ class SubscribeViewController: UIViewController {
     }
     
     @IBAction func endEmailEdit(_ sender: UITextField) {
-        
-        let isEmail = validateEmail(of: sender.text)
-        let buttonText = isEmail ? "Continue" : "Skip"
-        contButton.setTitle(buttonText, for: .normal)
-        contButton.sizeToFit()
-    }
-    @IBAction func emailReturnPressed(_ sender: UITextField) {
-        sender.resignFirstResponder()
-        if validateEmail(of: sender.text) {
-            performSegue(withIdentifier: "emailEndSegue", sender: sender)
+        if fromMenu {
+            contButton.isEnabled = validateEmail(of: sender.text)
+        } else {
+            let isEmail = validateEmail(of: sender.text)
+            let buttonText = isEmail ? "Continue" : "Skip"
+            contButton.setTitle(buttonText, for: .normal)
+            contButton.sizeToFit()
         }
     }
     
+    @IBAction func emailReturnPressed(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func savePressed(_ sender: UIButton) {
+        if fromMenu {
+            showAlert(sender: sender)
+        }
+    }
     //  Other functions
-    func validateEmail(of email: String?) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
-        return email?.range(of: emailRegEx, options: .regularExpression) != nil
+    
+    func showAlert(sender: Any?) {
+        if let email = emailField.text, validateEmail(of: email) {
+            let alert = UIAlertController(title: "Subscription Confirmation", message: "By submitting this email, you agree to recieving emails regarding future products from The Odin Spire", preferredStyle: .alert)
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+                self.emailField.text = ""
+            })
+            
+            let approve = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
+                UserDefaults.standard.set(email, forKey: EMAIL)
+                
+                print(UserDefaults.standard.value(forKey: EMAIL) as? String ?? "Not set")
+                
+                self.emailField.placeholder = email
+                self.emailField.text = ""
+            })
+            
+            alert.addAction(cancel)
+            alert.addAction(approve)
+            
+            present(alert, animated: true)
+        }
     }
 }

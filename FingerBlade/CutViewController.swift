@@ -8,24 +8,24 @@
 
 import UIKit
 
-class CutViewController: UIViewController {
+class CutViewController: UIViewController, OptionViewController {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var cutLabel: UILabel!
     @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var continueButton: UIButton!
     
     var cutStore: SampleStore!
-    var shuffled = false
-    var counter = 1
-    var cutsToMake = 3
+    var counter = 0
     var cut: CutLine?
-    var cutIterator: IndexingIterator<[CutLine]>?
     
-    var cutList: [CutLine]?
+    var fromMenu = false
     
     var aniGen: AnimationGenerator!
     var aniLayer: CAShapeLayer!
     
     var recognizer: UITapSwipeGestureRecognizer!
+    
+    var unwind = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +37,15 @@ class CutViewController: UIViewController {
         recognizer.numberOfSwipeTouchesRequired = 1
         
         countView.alpha = 0
-        //countLabel.alpha = 0
         
         view.addGestureRecognizer(recognizer)
         
-        cutIterator = cutList?.makeIterator()
+        continueButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if cutStore == nil { cutStore = SampleStore() }
-        cutIterator = CutLine.all.makeIterator()
+        
             //[CutLine.fendManTut, .punSot].makeIterator()
         aniGen = AnimationGenerator(withPathGenerator: CutPathGenerator(ofSize: view.bounds.size))
         countLabel.text = String(counter)
@@ -56,7 +55,7 @@ class CutViewController: UIViewController {
         countView.layer.zPosition = 1
         countLabel.layer.zPosition = 1
         
-        setUp(cut: cutIterator?.next())
+        setUp(cut: cutStore.next())
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,16 +63,16 @@ class CutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        UserDefaults.standard.set(true, forKey: COMPLETE)
+        UserDefaults.standard.removeObject(forKey: STORE)
     }
-    */
+ 
 
     func setUp(cut: CutLine?) {
         self.cut = cut
@@ -88,9 +87,14 @@ class CutViewController: UIViewController {
         guard cut != nil else {
             //  TODO: set up segue
             CATransaction.commit()
+            
+            view.removeGestureRecognizer(recognizer)
+            
             let handler = DataFileHandler()
             handler.writeSample(store: cutStore)
-            handler.send()
+            handler.send()    //  TODO Reestablish
+            
+            continueButton.isHidden = false
             return
         }
         
@@ -105,9 +109,9 @@ class CutViewController: UIViewController {
         guard cut != nil else { return }
         cutStore.put(trail: sender.trail, into: cut!)
         
-        if counter >= cutsToMake {
+        if counter >= cutStore.cutsToMake {
             counter = 0
-            setUp(cut: cutIterator?.next())
+            setUp(cut: cutStore.next())
         }
         
         countLabel.text = counter == 0 ? "✔︎" : String(counter)
@@ -120,5 +124,11 @@ class CutViewController: UIViewController {
         let completion = { (_: Bool) -> Void in UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateOut, completion: nil) }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: options, animations: animateIn, completion: completion)
+    }
+    
+    @IBAction func continuePressed(_ sender: UIButton) {
+        if fromMenu {
+            performSegue(withIdentifier: "unwindToMenu", sender: self)
+        }
     }
 }
