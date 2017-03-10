@@ -43,6 +43,7 @@ func createCGPointArray(from string: String) -> [CGPoint] {
 /// - Returns: Date formatter
 func standardDateFormatter() -> DateFormatter {
     let format = DateFormatter()
+    format.timeZone = TimeZone(abbreviation: "UTC")
     format.dateFormat = "yyyyMMdd.HHmm"
     
     return format

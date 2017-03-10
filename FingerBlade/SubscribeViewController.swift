@@ -103,6 +103,8 @@ class SubscribeViewController: UIViewController, OptionViewController {
             
             let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
                 self.emailField.text = ""
+                
+                self.contButton.setTitle("Skip", for: .normal)
             })
             
             let approve = UIAlertAction(title: "Confirm", style: .default, handler: { _ in

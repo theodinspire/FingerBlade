@@ -39,6 +39,7 @@ class SampleStore {
     /// Default constructor, using every CutLine with 10 lines each
     convenience init () {
         self.init(cutsToMake: 10, cutList: CutLine.all)
+        //3, cutList: [CutLine.fendManMez, .sotManTut, .punCav])
     }
     
     /// Add a sample
